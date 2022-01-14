@@ -1,0 +1,8 @@
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\bin\Release\WzComparerR2.PluginBase.dll
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\bin\Release\WzComparerR2.PluginBase.pdb
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\bin\Release\DevComponents.DotNetBar2.dll
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\obj\Release\WzComparerR2.PluginBase.csprojAssemblyReference.cache
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\obj\Release\WzComparerR2.PluginBase.csproj.CoreCompileInputs.cache
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\obj\Release\WzComparerR2.PluginBase.csproj.CopyComplete
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\obj\Release\WzComparerR2.PluginBase.dll
+D:\WzComparerR2-kms\WzComparerR2.PluginBase\obj\Release\WzComparerR2.PluginBase.pdb
