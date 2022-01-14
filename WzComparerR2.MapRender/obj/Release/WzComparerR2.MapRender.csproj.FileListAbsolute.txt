@@ -1,0 +1,16 @@
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.csprojAssemblyReference.cache
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.Properties.Resources.resources
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.csproj.GenerateResource.cache
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.csproj.CoreCompileInputs.cache
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\WzComparerR2.MapRender.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\WzComparerR2.MapRender.pdb
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\SharpDX.RawInput.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\CharaSimResource.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\EmptyKeys.UserInterface.Core.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\EmptyKeys.UserInterface.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\EmptyKeys.UserInterface.MonoGame.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\IMEHelper.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\bin\Release\TSF.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.csproj.CopyComplete
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.dll
+D:\WzComparerR2-kms\WzComparerR2.MapRender\obj\Release\WzComparerR2.MapRender.pdb
