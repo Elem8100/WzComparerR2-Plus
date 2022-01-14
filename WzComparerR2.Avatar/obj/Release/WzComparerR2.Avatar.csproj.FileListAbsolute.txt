@@ -1,0 +1,16 @@
+D:\WzComparerR2-kms\WzComparerR2.Avatar\bin\Release\WzComparerR2.Avatar.dll
+D:\WzComparerR2-kms\WzComparerR2.Avatar\bin\Release\WzComparerR2.Avatar.pdb
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.csprojAssemblyReference.cache
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.UI.AvatarCodeForm.resources
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.UI.AvatarForm.resources
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.Properties.Resources.resources
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.UI.AvatarPartButtonItem.resources
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.csproj.GenerateResource.cache
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.csproj.CoreCompileInputs.cache
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.dll
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.pdb
+D:\WzComparerR2-kms\WzComparerR2.Avatar\bin\Release\WzComparerR2.exe
+D:\WzComparerR2-kms\WzComparerR2.Avatar\bin\Release\WzComparerR2.pdb
+D:\WzComparerR2-kms\WzComparerR2.Avatar\bin\Release\WzComparerR2.exe.config
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.csproj.CopyComplete
+D:\WzComparerR2-kms\WzComparerR2.Avatar\obj\Release\WzComparerR2.Avatar.UI.LoadAvatarForm.resources
