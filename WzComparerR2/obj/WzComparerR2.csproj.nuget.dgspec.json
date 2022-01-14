@@ -1,0 +1,169 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\WzComparerR2-kms\\WzComparerR2\\WzComparerR2.csproj": {}
+  },
+  "projects": {
+    "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj",
+        "projectName": "WzComparerR2.Common",
+        "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj",
+        "packagesPath": "C:\\Users\\elen8\\.nuget\\packages\\",
+        "outputPath": "D:\\WzComparerR2-kms\\WzComparerR2.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\elen8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net452"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {
+          "dependencies": {
+            "MonoGame.Framework.WindowsDX": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "SharpDX.Mathematics": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj",
+        "projectName": "WzComparerR2.PluginBase",
+        "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj",
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj"
+              },
+              "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {}
+      }
+    },
+    "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj",
+        "projectName": "WzComparerR2.WzLib",
+        "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj"
+      },
+      "frameworks": {
+        "net40": {}
+      }
+    },
+    "D:\\WzComparerR2-kms\\WzComparerR2\\WzComparerR2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\WzComparerR2-kms\\WzComparerR2\\WzComparerR2.csproj",
+        "projectName": "WzComparerR2",
+        "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2\\WzComparerR2.csproj",
+        "packagesPath": "C:\\Users\\elen8\\.nuget\\packages\\",
+        "outputPath": "D:\\WzComparerR2-kms\\WzComparerR2\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\elen8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {
+              "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.Common\\WzComparerR2.Common.csproj"
+              },
+              "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj"
+              },
+              "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj": {
+                "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.WzLib\\WzComparerR2.WzLib.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "ManagedBass": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "MonoGame.Framework.WindowsDX": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "SharpDX.Mathematics": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

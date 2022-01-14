@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "xTxi5LlSDqnHVZVFRlimQRBtC4uMRpCkXkKAewbkfzX1Xrs2h3ujwO+vPSD5zk9GyHA/Q8KyKBVtx4LR4C+1Ow==",
+  "success": true,
+  "projectFilePath": "D:\\WzComparerR2-kms\\WzComparerR2\\WzComparerR2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\elen8\\.nuget\\packages\\managedbass\\3.1.0\\managedbass.3.1.0.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\monogame.framework.windowsdx\\3.8.0.1641\\monogame.framework.windowsdx.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx\\4.0.1\\sharpdx.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.direct2d1\\4.0.1\\sharpdx.direct2d1.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.direct3d11\\4.0.1\\sharpdx.direct3d11.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.direct3d9\\4.0.1\\sharpdx.direct3d9.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.dxgi\\4.0.1\\sharpdx.dxgi.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.mathematics\\4.0.1\\sharpdx.mathematics.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.mediafoundation\\4.0.1\\sharpdx.mediafoundation.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.xaudio2\\4.0.1\\sharpdx.xaudio2.4.0.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\sharpdx.xinput\\4.0.1\\sharpdx.xinput.4.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
