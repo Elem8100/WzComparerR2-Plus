@@ -1,0 +1,10 @@
+D:\WzComparerR2-kms\WzComparerR2.Network\bin\Release\WzComparerR2.Network.dll
+D:\WzComparerR2-kms\WzComparerR2.Network\bin\Release\WzComparerR2.Network.pdb
+D:\WzComparerR2-kms\WzComparerR2.Network\bin\Release\Newtonsoft.Json.dll
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.csprojAssemblyReference.cache
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.LoggerForm.resources
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.csproj.GenerateResource.cache
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.csproj.CoreCompileInputs.cache
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.csproj.CopyComplete
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.dll
+D:\WzComparerR2-kms\WzComparerR2.Network\obj\Release\WzComparerR2.Network.pdb
