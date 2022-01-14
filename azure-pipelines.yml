@@ -1,0 +1,133 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'WzComparerR2.sln'
+  buildPlatform_anycpu: 'Any CPU'
+  buildPlatform_x86: 'x86'
+  buildConfiguration: 'Release'
+  outputDir_anycpu: 'WzComparerR2/bin/release'
+  outputDir_x86: 'WzComparerR2/bin/x86/release'
+  outputFileName: 'WcR2_With_Plugins_$(Build.BuildNumber)'
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  accountName: 'wcr2publish'
+  containerName: 'ci-build'
+
+steps:
+- checkout: self
+  submodules: true
+  fetchDepth: 1
+  path: s/WzComparerR2
+  persistCredentials: true
+
+- task: CmdLine@2
+  displayName: Generate version file
+  inputs:
+    script: |
+      mkdir Build
+      echo [assembly: global::System.Reflection.AssemblyInformationalVersion("2.2.$(Build.BuildNumber)")] >> Build\CommonAssemblyInfo.cs
+
+- task: NuGetCommand@2
+  displayName: Restore NuGet packages
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+
+- task: VSBuild@1
+  displayName: Build anycpu
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform_anycpu)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSBuild@1
+  displayName: Build x86
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform_x86)'
+    configuration: '$(buildConfiguration)'
+
+- task: CmdLine@2
+  displayName: Prepare output files
+  inputs:
+    script: |
+      move "$(outputDir_anycpu)\*.dll" "$(outputDir_anycpu)\Lib"
+      del "$(outputDir_anycpu)\*.pdb"
+      rename "$(outputDir_anycpu)\WzComparerR2.exe" "WzComparerR2.anycpu.exe"
+      rename "$(outputDir_anycpu)\WzComparerR2.exe.config" "WzComparerR2.anycpu.exe.config"
+      copy /y "$(outputDir_x86)\WzComparerR2.exe" "$(outputDir_anycpu)"
+      copy /y "$(outputDir_x86)\WzComparerR2.exe.config" "$(outputDir_anycpu)"
+    failOnStderr: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(outputDir_anycpu)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(outputFileName).zip'
+    replaceExistingArchive: true
+
+- task: AzureCLI@2
+  displayName: Upload to blob
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise(66312bd9-1264-4b34-872d-2e557fc1bc0d)'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      Write-Host "Uploading files..."
+      az storage blob upload --auth-mode login --account-name $(accountName) --container-name $(containerName) --name "$(outputFileName).zip" --file "$(Build.ArtifactStagingDirectory)/$(outputFileName).zip"
+      
+      Write-Host "Generate url..."
+      $url = ConvertFrom-Json (az storage blob url --auth-mode login --account-name $(accountName) --container-name $(containerName) --name "$(outputFileName).zip")
+
+      Write-Host "Generate sas..."
+      $expireDate = (Get-Date).ToUniversalTime().AddYears(1).ToString("yyyy-MM-dd'T'HH:mm:ss'Z'")
+      $keys = ConvertFrom-Json ((az storage account keys list --account-name $(accountName)) -join "")
+      $accountKey = $keys[0].value
+      $sas = ConvertFrom-Json (az storage blob generate-sas --account-name $(accountName) --account-key "$accountKey" --container-name $(containerName) --name "$(outputFileName).zip" --expiry "$expireDate" --permissions "r")
+      
+      $sasurl = "${url}?${sas}"
+      Write-Host "${sasurl}"
+      Write-Host "##vso[task.setvariable variable=sasurl]${sasurl}"
+
+- task: GitHubRelease@1
+  condition: and(succeeded(), eq(variables.isMain, true))
+  continueOnError: true
+  displayName: Delete last build
+  inputs:
+    gitHubConnection: 'Kagamia'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'delete'
+    tag: 'ci-build'
+
+- task: CmdLine@2
+  condition: and(succeeded(), eq(variables.isMain, true))
+  continueOnError: true
+  displayName: Delete ci-build tag
+  inputs:
+    script: 'git push --delete origin ci-build'
+    failOnStderr: false
+
+- task: GitHubRelease@1
+  condition: and(succeeded(), eq(variables.isMain, true))
+  inputs:
+    gitHubConnection: 'Kagamia'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'edit'
+    target: '$(Build.SourceVersion)'
+    tag: 'ci-build'
+    title: 'CI-Build-$(Build.BuildNumber)'
+    releaseNotesSource: 'inline'
+    releaseNotesInline: |
+      Automation build from azure-pipeline.
+      Binaries: [Zip]($(sasurl))
+    isPreRelease: true
+    addChangeLog: false
