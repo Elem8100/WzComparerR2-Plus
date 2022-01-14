@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "i1KUhBylHu8+HcARXdXouydUrGqdUmjZT5md6TsyzhX6LvM83TE3AepCAOT+ZUjkDXaYV8PV3pj4NMM8e5kzjw==",
+  "success": true,
+  "projectFilePath": "D:\\WzComparerR2-kms\\WzComparerR2.Network\\WzComparerR2.Network.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\elen8\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
