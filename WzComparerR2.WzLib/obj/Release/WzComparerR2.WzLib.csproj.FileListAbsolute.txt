@@ -1,0 +1,6 @@
+D:\WzComparerR2-kms\WzComparerR2.WzLib\bin\Release\WzComparerR2.WzLib.dll
+D:\WzComparerR2-kms\WzComparerR2.WzLib\bin\Release\WzComparerR2.WzLib.pdb
+D:\WzComparerR2-kms\WzComparerR2.WzLib\obj\Release\WzComparerR2.WzLib.csproj.CoreCompileInputs.cache
+D:\WzComparerR2-kms\WzComparerR2.WzLib\obj\Release\WzComparerR2.WzLib.dll
+D:\WzComparerR2-kms\WzComparerR2.WzLib\obj\Release\WzComparerR2.WzLib.pdb
+D:\WzComparerR2-kms\WzComparerR2.WzLib\obj\Release\WzComparerR2.WzLib.csprojAssemblyReference.cache
