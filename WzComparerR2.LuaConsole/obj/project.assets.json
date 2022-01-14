@@ -1,0 +1,548 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6": {
+      "ICSharpCode.TextEditor/3.2.1.6466": {
+        "type": "package",
+        "compile": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        },
+        "runtime": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        }
+      },
+      "KeraLua/1.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "build": {
+          "build/net46/KeraLua.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/android-arm/native/liblua54.so": {
+            "assetType": "native",
+            "rid": "android-arm"
+          },
+          "runtimes/android-arm64/native/liblua54.so": {
+            "assetType": "native",
+            "rid": "android-arm64"
+          },
+          "runtimes/android-x64/native/liblua54.so": {
+            "assetType": "native",
+            "rid": "android-x64"
+          },
+          "runtimes/android-x86/native/liblua54.so": {
+            "assetType": "native",
+            "rid": "android-x86"
+          },
+          "runtimes/ios/native/liblua54.framework/Info.plist": {
+            "assetType": "native",
+            "rid": "ios"
+          },
+          "runtimes/ios/native/liblua54.framework/liblua54": {
+            "assetType": "native",
+            "rid": "ios"
+          },
+          "runtimes/linux-x64/native/liblua54.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/maccatalyst/native/liblua54.framework/Info.plist": {
+            "assetType": "native",
+            "rid": "maccatalyst"
+          },
+          "runtimes/maccatalyst/native/liblua54.framework/liblua54": {
+            "assetType": "native",
+            "rid": "maccatalyst"
+          },
+          "runtimes/osx/native/liblua54.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/tvos/native/liblua54.framework/Info.plist": {
+            "assetType": "native",
+            "rid": "tvos"
+          },
+          "runtimes/tvos/native/liblua54.framework/liblua54": {
+            "assetType": "native",
+            "rid": "tvos"
+          },
+          "runtimes/win-arm/native/lua54.dll": {
+            "assetType": "native",
+            "rid": "win-arm"
+          },
+          "runtimes/win-arm64/native/lua54.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/lua54.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/lua54.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "NLua/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "KeraLua": "1.3.1"
+        },
+        "compile": {
+          "lib/net46/NLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/NLua.dll": {}
+        }
+      },
+      "WzComparerR2.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.2",
+        "dependencies": {
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        }
+      },
+      "WzComparerR2.PluginBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "WzComparerR2.Common": "1.0.0",
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        }
+      },
+      "WzComparerR2.WzLib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6/win": {
+      "ICSharpCode.TextEditor/3.2.1.6466": {
+        "type": "package",
+        "compile": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        },
+        "runtime": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        }
+      },
+      "KeraLua/1.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "build": {
+          "build/net46/KeraLua.targets": {}
+        }
+      },
+      "NLua/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "KeraLua": "1.3.1"
+        },
+        "compile": {
+          "lib/net46/NLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/NLua.dll": {}
+        }
+      },
+      "WzComparerR2.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.2",
+        "dependencies": {
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        }
+      },
+      "WzComparerR2.PluginBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "WzComparerR2.Common": "1.0.0",
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        }
+      },
+      "WzComparerR2.WzLib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6/win-x64": {
+      "ICSharpCode.TextEditor/3.2.1.6466": {
+        "type": "package",
+        "compile": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        },
+        "runtime": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        }
+      },
+      "KeraLua/1.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/lua54.dll": {}
+        },
+        "build": {
+          "build/net46/KeraLua.targets": {}
+        }
+      },
+      "NLua/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "KeraLua": "1.3.1"
+        },
+        "compile": {
+          "lib/net46/NLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/NLua.dll": {}
+        }
+      },
+      "WzComparerR2.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.2",
+        "dependencies": {
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        }
+      },
+      "WzComparerR2.PluginBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "WzComparerR2.Common": "1.0.0",
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        }
+      },
+      "WzComparerR2.WzLib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6/win-x86": {
+      "ICSharpCode.TextEditor/3.2.1.6466": {
+        "type": "package",
+        "compile": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        },
+        "runtime": {
+          "lib/Net20/ICSharpCode.TextEditor.dll": {}
+        }
+      },
+      "KeraLua/1.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/KeraLua.dll": {}
+        },
+        "native": {
+          "runtimes/win-x86/native/lua54.dll": {}
+        },
+        "build": {
+          "build/net46/KeraLua.targets": {}
+        }
+      },
+      "NLua/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "KeraLua": "1.3.1"
+        },
+        "compile": {
+          "lib/net46/NLua.dll": {}
+        },
+        "runtime": {
+          "lib/net46/NLua.dll": {}
+        }
+      },
+      "WzComparerR2.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.2",
+        "dependencies": {
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.Common.dll": {}
+        }
+      },
+      "WzComparerR2.PluginBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "WzComparerR2.Common": "1.0.0",
+          "WzComparerR2.WzLib": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.PluginBase.dll": {}
+        }
+      },
+      "WzComparerR2.WzLib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WzComparerR2.WzLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ICSharpCode.TextEditor/3.2.1.6466": {
+      "sha512": "bBmcn2E6pd3AmG8xvCkEx7JX3S/LoQ4eCw2MyRFx8NET6q/MPS7eVdRH9MFS8Ojn9wQtUNOKVmmd/LclyYkIbg==",
+      "type": "package",
+      "path": "icsharpcode.texteditor/3.2.1.6466",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icsharpcode.texteditor.3.2.1.6466.nupkg.sha512",
+        "icsharpcode.texteditor.nuspec",
+        "lib/Net20/ICSharpCode.TextEditor.dll"
+      ]
+    },
+    "KeraLua/1.3.1": {
+      "sha512": "DSZkJx3+9YmJONylrJY2xvjmBBT6oPZO1Iv+MBZh4Ta8KsYewKmpp5n+yW2J5vkIxkJ1yxiQuHE+iKw25Kw6GA==",
+      "type": "package",
+      "path": "keralua/1.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/net46/KeraLua.targets",
+        "keralua.1.3.1.nupkg.sha512",
+        "keralua.nuspec",
+        "lib/MonoAndroid/KeraLua.dll",
+        "lib/MonoAndroid/KeraLua.xml",
+        "lib/net46/KeraLua.dll",
+        "lib/net46/KeraLua.xml",
+        "lib/net6.0-android28/KeraLua.dll",
+        "lib/net6.0-android28/KeraLua.xml",
+        "lib/net6.0-ios11.0/KeraLua.dll",
+        "lib/net6.0-ios11.0/KeraLua.xml",
+        "lib/net6.0-maccatalyst13.0/KeraLua.dll",
+        "lib/net6.0-maccatalyst13.0/KeraLua.xml",
+        "lib/net6.0-macos10.13/KeraLua.dll",
+        "lib/net6.0-macos10.13/KeraLua.xml",
+        "lib/net6.0-tvos11.0/KeraLua.dll",
+        "lib/net6.0-tvos11.0/KeraLua.xml",
+        "lib/net6.0/KeraLua.dll",
+        "lib/net6.0/KeraLua.xml",
+        "lib/netstandard2.0/KeraLua.dll",
+        "lib/netstandard2.0/KeraLua.xml",
+        "lib/uap10.0/KeraLua.dll",
+        "lib/uap10.0/KeraLua.pri",
+        "lib/uap10.0/KeraLua.xml",
+        "lib/xamarinios/KeraLua.dll",
+        "lib/xamarinios/KeraLua.xml",
+        "lib/xamarinmac/KeraLua.dll",
+        "lib/xamarinmac/KeraLua.xml",
+        "lib/xamarintvos/KeraLua.dll",
+        "lib/xamarintvos/KeraLua.xml",
+        "runtimes/android-arm/native/liblua54.so",
+        "runtimes/android-arm64/native/liblua54.so",
+        "runtimes/android-x64/native/liblua54.so",
+        "runtimes/android-x86/native/liblua54.so",
+        "runtimes/ios/native/liblua54.framework/Info.plist",
+        "runtimes/ios/native/liblua54.framework/liblua54",
+        "runtimes/linux-x64/native/liblua54.so",
+        "runtimes/maccatalyst/native/liblua54.framework/Info.plist",
+        "runtimes/maccatalyst/native/liblua54.framework/liblua54",
+        "runtimes/osx/native/liblua54.dylib",
+        "runtimes/tvos/native/liblua54.framework/Info.plist",
+        "runtimes/tvos/native/liblua54.framework/liblua54",
+        "runtimes/win-arm/native/lua54.dll",
+        "runtimes/win-arm64/native/lua54.dll",
+        "runtimes/win-x64/native/lua54.dll",
+        "runtimes/win-x86/native/lua54.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/lua54.dll",
+        "runtimes/win10-arm64/nativeassets/uap10.0/lua54.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/lua54.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/lua54.dll"
+      ]
+    },
+    "NLua/1.6.0": {
+      "sha512": "0+p4yrJoAGfsMuoZpcdSpp8jNHrZs9nyGPoYLbHaxzqbPZIS8RhBO1fnQLYsECrTMiQVledR3bDkEfRybjBdpw==",
+      "type": "package",
+      "path": "nlua/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/MonoAndroid/NLua.dll",
+        "lib/MonoAndroid/NLua.pdb",
+        "lib/net46/NLua.dll",
+        "lib/net6.0-android28/NLua.dll",
+        "lib/net6.0-ios11.0/NLua.dll",
+        "lib/net6.0-maccatalyst13.0/NLua.dll",
+        "lib/net6.0-macos10.13/NLua.dll",
+        "lib/net6.0-tvos11.0/NLua.dll",
+        "lib/net6.0/NLua.dll",
+        "lib/netstandard2.0/NLua.dll",
+        "lib/uap10.0/NLua.dll",
+        "lib/uap10.0/NLua.pri",
+        "lib/xamarinios/NLua.dll",
+        "lib/xamarinios/NLua.pdb",
+        "lib/xamarinmac/NLua.dll",
+        "lib/xamarinmac/NLua.pdb",
+        "lib/xamarintvos/NLua.dll",
+        "lib/xamarintvos/NLua.pdb",
+        "nlua.1.6.0.nupkg.sha512",
+        "nlua.nuspec"
+      ]
+    },
+    "WzComparerR2.Common/1.0.0": {
+      "type": "project",
+      "path": "../WzComparerR2.Common/WzComparerR2.Common.csproj",
+      "msbuildProject": "../WzComparerR2.Common/WzComparerR2.Common.csproj"
+    },
+    "WzComparerR2.PluginBase/1.0.0": {
+      "type": "project",
+      "path": "../WzComparerR2.PluginBase/WzComparerR2.PluginBase.csproj",
+      "msbuildProject": "../WzComparerR2.PluginBase/WzComparerR2.PluginBase.csproj"
+    },
+    "WzComparerR2.WzLib/1.0.0": {
+      "type": "project",
+      "path": "../WzComparerR2.WzLib/WzComparerR2.WzLib.csproj",
+      "msbuildProject": "../WzComparerR2.WzLib/WzComparerR2.WzLib.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6": [
+      "ICSharpCode.TextEditor >= 3.2.1.6466",
+      "KeraLua >= 1.3.1",
+      "NLua >= 1.6.0",
+      "WzComparerR2.PluginBase >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\elen8\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\WzComparerR2-kms\\WzComparerR2.LuaConsole\\WzComparerR2.LuaConsole.csproj",
+      "projectName": "WzComparerR2.LuaConsole",
+      "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.LuaConsole\\WzComparerR2.LuaConsole.csproj",
+      "packagesPath": "C:\\Users\\elen8\\.nuget\\packages\\",
+      "outputPath": "D:\\WzComparerR2-kms\\WzComparerR2.LuaConsole\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\elen8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net46"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net46": {
+          "projectReferences": {
+            "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj": {
+              "projectPath": "D:\\WzComparerR2-kms\\WzComparerR2.PluginBase\\WzComparerR2.PluginBase.csproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "net46": {
+        "dependencies": {
+          "ICSharpCode.TextEditor": {
+            "target": "Package",
+            "version": "[3.2.1.6466, )"
+          },
+          "KeraLua": {
+            "target": "Package",
+            "version": "[1.3.1, )"
+          },
+          "NLua": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "tENu6TLLypNWQhakAKvAFVCd2K3jRY655R9bvWJWe5nFln04USS5B5JyAcIe1fsAT4DGsNVbJlyFkgS7NVTcxg==",
+  "success": true,
+  "projectFilePath": "D:\\WzComparerR2-kms\\WzComparerR2.LuaConsole\\WzComparerR2.LuaConsole.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\elen8\\.nuget\\packages\\icsharpcode.texteditor\\3.2.1.6466\\icsharpcode.texteditor.3.2.1.6466.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\keralua\\1.3.1\\keralua.1.3.1.nupkg.sha512",
+    "C:\\Users\\elen8\\.nuget\\packages\\nlua\\1.6.0\\nlua.1.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}
