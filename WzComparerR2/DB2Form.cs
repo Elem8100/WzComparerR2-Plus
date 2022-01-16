@@ -1663,7 +1663,7 @@ namespace WinFormsApp1
         }
 
         void LoadMusic()
-        { 
+        {
             foreach(var Iter in MainForm.TreeNode.Nodes)
             {
                 if(LeftStr(Iter.Text,5) == "Sound")
@@ -2341,6 +2341,7 @@ namespace WinFormsApp1
 
         }
         FrmMapRender2 mapRenderGame2;
+        
         void ShowMap(Wz_Node MapImg)
         {
             Wz_Node node = MapImg;
@@ -2372,13 +2373,17 @@ namespace WinFormsApp1
                             {
                                 if(this.mapRenderGame2 != null)
                                 {
-                                    // return;
+                                   
+                                  // this.mapRenderGame2.form.Visible = false;
                                     this.mapRenderGame2.Dispose();
                                     this.mapRenderGame2 = null;
-
                                 }
+
                                 this.mapRenderGame2 = new FrmMapRender2(img) { StringLinker = sl };
                                 this.mapRenderGame2.Window.Title = "MapRender ";
+                                this.mapRenderGame2.form.TopMost = true;
+                               
+
                                 try
                                 {
                                     using(this.mapRenderGame2)
@@ -2388,7 +2393,7 @@ namespace WinFormsApp1
                                 }
                                 finally
                                 {
-                                    this.mapRenderGame2 = null;
+                                   // this.mapRenderGame2 = null;
                                 }
                             }
 #if !DEBUG
@@ -2427,6 +2432,11 @@ namespace WinFormsApp1
                 if(tabIndex == 16 || tabIndex == 17 || tabIndex == 18)
                 {
                     var imgNode = GetNode("Map/Map/Map" + LeftStr(SelectID,1)).FindNodeByPath(SelectID + ".img");
+                    if( this.mapRenderGame2!=null)
+                    { 
+                        this.mapRenderGame2.Dispose();
+                        this.mapRenderGame2=null;
+                    }
                     ShowMap(imgNode);
                     if(imgNode != null)
                         MainForm.ExpandTreeNode(imgNode);
@@ -2462,12 +2472,13 @@ namespace WinFormsApp1
         {
             MainForm.tooltipRef.Visible = false;
             if(this.mapRenderGame2 != null)
-            {
-              //  this.mapRenderGame2.Dispose();
-                this.mapRenderGame2.form.Visible = false;
+            {  
+             
+                this.mapRenderGame2.Dispose();
+                //   this.mapRenderGame2.form.Visible = false;
                 this.mapRenderGame2 = null;
-                // this.mapRenderGame2.form.Visible = false;
-                //  this.Focus();
+              
+               
             }
         }
         void SetGrid()

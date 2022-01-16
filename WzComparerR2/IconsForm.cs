@@ -362,7 +362,7 @@ namespace WzComparerR2
         }
 
 
-         void LoadImages(DataGridView dataViewImages,int GridSize,bool Resize = false)
+        void LoadImages(DataGridView dataViewImages,int GridSize,bool Resize = false)
         {
             // dataViewImages.Rows.Clear();
             // dataViewImages.Columns.Clear();
@@ -456,6 +456,7 @@ namespace WzComparerR2
                                 }
                                 this.mapRenderGame2 = new FrmMapRender2(img) { StringLinker = sl };
                                 this.mapRenderGame2.Window.Title = "MapRender ";
+                                this.mapRenderGame2.form.TopMost = true;
                                 try
                                 {
                                     using(this.mapRenderGame2)
@@ -465,7 +466,7 @@ namespace WzComparerR2
                                 }
                                 finally
                                 {
-                                    this.mapRenderGame2 = null;
+                                    //this.mapRenderGame2 = null;
                                 }
                             }
 #if !DEBUG
@@ -508,6 +509,11 @@ namespace WzComparerR2
                     if(listBox1.SelectedIndex == 16)
                     {
                         var imgNode = GetNode("Map/Map/Map" + LeftStr(Path,1)).FindNodeByPath(Path + ".img");
+                        if(this.mapRenderGame2 != null)
+                        {
+                            this.mapRenderGame2.Dispose();
+                            this.mapRenderGame2 = null;
+                        }
                         ShowMap(imgNode);
                         if(imgNode != null)
                             MainForm.ExpandTreeNode(imgNode);
@@ -530,21 +536,21 @@ namespace WzComparerR2
                 };
             }
             ShowImageGrid = ImageGrids[0];
-              
-             if (!System.Windows.Forms.SystemInformation.TerminalServerSession)
+
+            if(!System.Windows.Forms.SystemInformation.TerminalServerSession)
             {
                 var dgvType = ShowImageGrid.GetType();
-                var pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-                pi.SetValue(ShowImageGrid, true, null);
-            }   
-            
-         
-         
+                var pi = dgvType.GetProperty("DoubleBuffered",BindingFlags.Instance | BindingFlags.NonPublic);
+                pi.SetValue(ShowImageGrid,true,null);
+            }
+
+
+
         }
         void Click2(object sender,EventArgs e)
         {
 
-           
+
         }
         void CellClick(DataGridView DataGrid,DataGridViewCellEventArgs e)
         {
@@ -552,7 +558,7 @@ namespace WzComparerR2
 
         }
 
-      
+
 
         Image ResizeImage(int index,int Width,int Height)
         {
@@ -585,7 +591,7 @@ namespace WzComparerR2
             }
             return destImage;
         }
-     
+
 
         string GetIDPath2(string ID)
         {

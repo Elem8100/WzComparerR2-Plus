@@ -3266,7 +3266,7 @@ namespace WzComparerR2
 
             if(openedWz.Count < 2)
             {
-                MessageBoxEx.Show("沒有成功打開兩個WZ。","Compare");
+                MessageBoxEx.Show("沒有成功打開兩個Base.wz。","Compare");
                 return;
             }
 

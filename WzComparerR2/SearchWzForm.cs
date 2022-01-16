@@ -102,7 +102,10 @@ namespace WzComparerR2
                     Path = Path.Replace("=","");
                     Path = Path.Replace(" -","");
                     if(GetNode(Path) != null)
+                    { 
                         MainForm.ExpandTreeNode(GetNode(Path));
+                        MainForm.tooltipRef.BringToFront();
+                    }
                 }
                 break;
 
@@ -113,7 +116,10 @@ namespace WzComparerR2
                     Path = Path.Replace("=","");
                     Path = Path.Replace(" -","");
                     if(GetNode(Path) != null)
+                    { 
                         MainForm.ExpandTreeNode(GetNode(Path));
+                         MainForm.tooltipRef.BringToFront();
+                    }
                 }
                 break;
             }
