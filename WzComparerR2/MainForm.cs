@@ -28,16 +28,31 @@ using WzComparerR2.Config;
 using WzComparerR2.Animation;
 using static Microsoft.Xna.Framework.MathHelper;
 using WinFormsApp1;
+using System.Runtime.InteropServices;
 
 namespace WzComparerR2
 {
     public partial class MainForm:Office2007RibbonForm, PluginContextProvider
-    {
+    {   
+          [DllImport("kernel32",CharSet = CharSet.Unicode,SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool DeleteFile(string name);
+        public bool Unblock(string fileName)
+        {
+            return DeleteFile(fileName + ":Zone.Identifier");
+        }
+
         public MainForm()
         {
             InitializeComponent();
             Form.CheckForIllegalCrossThreadCalls = false;
             this.MinimumSize = new Size(600,450);
+             string[] Files = Directory.GetFiles(@System.Environment.CurrentDirectory ,"*.*",SearchOption.AllDirectories);
+
+            for(int i = 0;i < Files.Length;i++)
+            {
+                Unblock(Files[i]);
+            } 
             advTree1.AfterNodeSelect += new AdvTreeNodeEventHandler(advTree1_AfterNodeSelect_2);
             advTree2.AfterNodeSelect += new AdvTreeNodeEventHandler(advTree2_AfterNodeSelect_2);
             //new ImageDragHandler(this.pictureBox1).AttachEvents();
@@ -3653,9 +3668,11 @@ namespace WzComparerR2
             else
                 ImageViewerForm.Instance.Show();
         }
-
+        
+      
         private void MainForm_Load(object sender,EventArgs e)
         {
+           
             DB2Button = new DevComponents.DotNetBar.ButtonItem();
             DB2Button.Text = "MapleStoryDB2";
             DB2Button.FixedSize = new Size(85,65);
