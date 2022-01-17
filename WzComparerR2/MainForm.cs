@@ -33,8 +33,8 @@ using System.Runtime.InteropServices;
 namespace WzComparerR2
 {
     public partial class MainForm:Office2007RibbonForm, PluginContextProvider
-    {   
-          [DllImport("kernel32",CharSet = CharSet.Unicode,SetLastError = true)]
+    {
+        [DllImport("kernel32",CharSet = CharSet.Unicode,SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool DeleteFile(string name);
         public bool Unblock(string fileName)
@@ -47,12 +47,12 @@ namespace WzComparerR2
             InitializeComponent();
             Form.CheckForIllegalCrossThreadCalls = false;
             this.MinimumSize = new Size(600,450);
-             string[] Files = Directory.GetFiles(@System.Environment.CurrentDirectory ,"*.*",SearchOption.AllDirectories);
-
+            string[] Files = Directory.GetFiles(@System.Environment.CurrentDirectory,"*.*",SearchOption.AllDirectories);
+            //dll檔自動解除封鎖
             for(int i = 0;i < Files.Length;i++)
             {
                 Unblock(Files[i]);
-            } 
+            }
             advTree1.AfterNodeSelect += new AdvTreeNodeEventHandler(advTree1_AfterNodeSelect_2);
             advTree2.AfterNodeSelect += new AdvTreeNodeEventHandler(advTree2_AfterNodeSelect_2);
             //new ImageDragHandler(this.pictureBox1).AttachEvents();
@@ -768,7 +768,7 @@ namespace WzComparerR2
 
         #region File菜单的事件
 
-       
+
         private void btnItemOpenWz_Click(object sender,EventArgs e)
         {
             using(OpenFileDialog dlg = new OpenFileDialog())
@@ -868,17 +868,18 @@ namespace WzComparerR2
             {
                 advTree1.EndUpdate();
             }
-
-            foreach(var Iter in GetNode("Effect/SetEff.img").Nodes)
-                foreach(var Iter2 in Iter.Nodes)
-                    if(Iter2.Text == "info")
-                        foreach(var Iter3 in Iter2.Nodes)
-                            foreach(var Iter4 in Iter3.Nodes)
-                                SetEffectList.AddOrReplace("0" + Iter4.Value.ToString(),Iter.FullPathToFile2());
-            //
-            foreach(var Iter in GetNode("Effect/ItemEff.img").Nodes)
-                ItemEffectList.AddOrReplace("0" + Iter.Text,Iter.FullPathToFile2());
-
+            if(PluginManager.FindWz(Wz_Type.Base) != null)
+            {
+                foreach(var Iter in GetNode("Effect/SetEff.img").Nodes)
+                    foreach(var Iter2 in Iter.Nodes)
+                        if(Iter2.Text == "info")
+                            foreach(var Iter3 in Iter2.Nodes)
+                                foreach(var Iter4 in Iter3.Nodes)
+                                    SetEffectList.AddOrReplace("0" + Iter4.Value.ToString(),Iter.FullPathToFile2());
+                //
+                foreach(var Iter in GetNode("Effect/ItemEff.img").Nodes)
+                    ItemEffectList.AddOrReplace("0" + Iter.Text,Iter.FullPathToFile2());
+            }
         }
 
         private void btnItemOpenImg_Click(object sender,EventArgs e)
@@ -1866,7 +1867,7 @@ namespace WzComparerR2
                         fs.Write(buffer,0,count);
                         size -= count;
                     }
-                    labelItemStatus.Text =  img.Name+"導出完畢: " ;
+                    labelItemStatus.Text = img.Name + "導出完畢: ";
                 }
                 catch(Exception ex)
                 {
@@ -1915,7 +1916,7 @@ namespace WzComparerR2
                     writer.WriteEndDocument();
                     writer.Close();
 
-                    labelItemStatus.Text = img.Name+"導出完畢" ;
+                    labelItemStatus.Text = img.Name + "導出完畢";
                 }
                 catch(Exception ex)
                 {
@@ -2993,7 +2994,7 @@ namespace WzComparerR2
         {
             int count = CharaSimLoader.LoadedSetItems.Count;
             CharaSimLoader.LoadedSetItems.Clear();
-            labelItemStatus.Text ="已經清空預讀套裝共" + count + "項。";
+            labelItemStatus.Text = "已經清空預讀套裝共" + count + "項。";
         }
 
         private void buttonItemClearExclusiveEquips_Click(object sender,EventArgs e)
@@ -3456,7 +3457,7 @@ namespace WzComparerR2
 
         private void buttonItemUpdate_Click(object sender,EventArgs e)
         {
-          //  System.Diagnostics.Process.Start("https://github.com/KENNYSOFT/WzComparerR2/releases");
+            //  System.Diagnostics.Process.Start("https://github.com/KENNYSOFT/WzComparerR2/releases");
         }
         public static Wz_Node TreeNode;
         private void btnItemOptions_Click(object sender,System.EventArgs e)
@@ -3668,11 +3669,11 @@ namespace WzComparerR2
             else
                 ImageViewerForm.Instance.Show();
         }
-        
-      
+
+
         private void MainForm_Load(object sender,EventArgs e)
         {
-           
+
             DB2Button = new DevComponents.DotNetBar.ButtonItem();
             DB2Button.Text = "MapleStoryDB2";
             DB2Button.FixedSize = new Size(85,65);
@@ -3739,7 +3740,7 @@ namespace WzComparerR2
             ImageViewerRibbonBar.MinimumSize = new Size(69,50);
             ImageViewerRibbonBar.Items.Add(ImageViewerButton);
             this.ribbonPanel1.Controls.Add(ImageViewerRibbonBar);
-            this.expandableSplitter2.SplitPosition=290;
+            this.expandableSplitter2.SplitPosition = 290;
         }
     }
 
