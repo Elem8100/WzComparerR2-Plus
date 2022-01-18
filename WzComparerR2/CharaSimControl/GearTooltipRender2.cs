@@ -646,13 +646,13 @@ namespace WzComparerR2.CharaSimControl
                 }
                 if (Gear.Props.TryGetValue(GearPropType.gatherTool_incSpeed, out value) && value > 0)
                 {
-                    TextRenderer.DrawText(g, skillName + " 速度提升 : +" + value + "%", GearGraphics.EquipDetailFont, new Point(13, picH), Color.White, TextFormatFlags.NoPadding);
+                    TextRenderer.DrawText(g, skillName + " 速度增加 : +" + value + "%", GearGraphics.EquipDetailFont, new Point(13, picH), Color.White, TextFormatFlags.NoPadding);
                     picH += 15;
                     hasPart2 = true;
                 }
                 if (Gear.Props.TryGetValue(GearPropType.gatherTool_incNum, out value) && value > 0)
                 {
-                    TextRenderer.DrawText(g, "最大數量 " + value + "最多可獲得", GearGraphics.EquipDetailFont, new Point(13, picH), Color.White, TextFormatFlags.NoPadding);
+                    TextRenderer.DrawText(g, "道具最多可獲得 " + value + "個", GearGraphics.EquipDetailFont, new Point(13, picH), Color.White, TextFormatFlags.NoPadding);
                     picH += 15;
                     hasPart2 = true;
                 }
