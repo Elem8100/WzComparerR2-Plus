@@ -134,6 +134,7 @@ namespace WzComparerR2.CharaSim
                 case GearPropType.jokerToSetItem: return value == 0 ? null : " c當前裝備3個以上的所有套装道具中包含的幸運物品！#";
                 case GearPropType.abilityTimeLimited: return value == 0 ? null : "期間限定能力值";
                 case GearPropType.blockGoldHammer: return value == 0 ? null : "無法使用黄金鐵鎚";
+                case GearPropType.cantRepair: return value == 0 ? null : "修理不可";
                 case GearPropType.colorvar: return value == 0 ? null : "#c此裝備可以通過染色顏料進行染色。#";
 
                 case GearPropType.incMHP_incMMP: return "MaxHP/MaxMP： " + sign + value;
@@ -170,12 +171,17 @@ namespace WzComparerR2.CharaSim
                     case GearPropType.incMAD:
                     case GearPropType.incPDD:
                     case GearPropType.incMDD:
+                    case GearPropType.incSpeed:
+                    case GearPropType.incJump:
                         subfix = $"({standardValue} #$+{value - standardValue}#)"; break;
 
                     case GearPropType.bdR:
                     case GearPropType.incBDR:
                     case GearPropType.imdR:
                     case GearPropType.incIMDR:
+                    case GearPropType.damR:
+                    case GearPropType.incDAMr:
+                    case GearPropType.statR:
                         subfix = $"({standardValue}% #$+{value - standardValue}%#)"; break;
                 }
                 propStr = "#$" + propStr + "# " + subfix;
@@ -347,6 +353,7 @@ namespace WzComparerR2.CharaSim
 
                 case GearType.tuner: return "調節器";
                 case GearType.bracelet: return "手鐲";
+               
 
                 //case GearType.breathShooter: return "브레스 슈터";
                 //case GearType.weaponBelt: return "웨폰 벨트";
@@ -519,6 +526,7 @@ namespace WzComparerR2.CharaSim
                 case 64: return "可裝備卡蒂娜";
                 case 65: return "天使破壞者可套用";
                 case 101: return "可以裝備神之子";
+                 
                 case 112: return "可裝備幻獸師";
                 case 142: return "可裝備凱內西斯";
                 case 151: return "可裝備阿戴爾";
@@ -570,13 +578,13 @@ namespace WzComparerR2.CharaSim
             switch (coreSpecType)
             {
                 case ItemCoreSpecType.Ctrl_mobLv:
-                    return value == 0 ? null : "몬스터 레벨 " + value + " 증가";
+                    return value == 0 ? null : "怪物等級 " + value + " 增加";
                 case ItemCoreSpecType.Ctrl_mobHPRate:
-                    return value == 0 ? null : "몬스터 HP " + value + "% 증가";
+                    return value == 0 ? null : "怪物 HP " + value + "% 增加";
                 case ItemCoreSpecType.Ctrl_mobRate:
-                    return value == 0 ? null : "몬스터 개체 수 " + value + "% 증가";
+                    return value == 0 ? null : "怪物數量 " + value + "% 增加";
                 case ItemCoreSpecType.Ctrl_mobRateSpecial:
-                    return value == 0 ? null : "몬스터 개체 수 " + value + "% 추가 증가";
+                    return value == 0 ? null : "怪物數量 " + value + "% 新增";
                 case ItemCoreSpecType.Ctrl_change_Mob:
                     return desc == null ? null : desc + (hasCoda ? "으" : "") + "로 몬스터 이미지 변경";
                 case ItemCoreSpecType.Ctrl_change_BGM:
