@@ -1075,16 +1075,43 @@ namespace WzComparerR2
                 }
             }
         }
+     
+        void SearchAnim(Wz_Node Entry)
+        {
+            if(Entry != null)
+            {
+                if(Entry.Text == "delay")
+                {
+                    var Child = Entry.ParentNode.ParentNode;
+                    if(!this.AniNamesBox.Items.Contains(Child.FullPathToFile2()))
+                        this.AniNamesBox.Items.Add(Child.FullPathToFile2());
+                }
 
+                foreach(var E in Entry.Nodes)
+                {
+                    SearchAnim(E);
+                }
+            }
+        }
+        bool FirstSearchAnim;
         private void advTree1_AfterNodeSelect(object sender,AdvTreeNodeEventArgs e)
         {
             Wz_Node selectedNode = e.Node.AsWzNode();
+           
 
             if(selectedNode == null)
             {
                 return;
             }
+           
 
+            this.pictureBoxEx1.Items.Clear();
+            FirstSearchAnim=true;
+            AniNamesBox.Items.Clear();
+            SearchAnim(GetNode(selectedNode.FullPathToFile2()));
+            if(AniNamesBox.Items.Count>0)
+              AniNamesBox.SelectedIndex=0;
+            
             listViewExWzDetail.BeginUpdate();
             listViewExWzDetail.Items.Clear();
 
@@ -1136,6 +1163,7 @@ namespace WzComparerR2
                         double ms = (Math.Round(QueryPerformance.GetLastInterval(),4) * 1000);
 
                         labelItemStatus.Text = "讀取image成功~用時" + ms + "ms...";
+         
                     }
                     else
                     {
@@ -1264,7 +1292,7 @@ namespace WzComparerR2
         {
             if(e.Node == null)
                 return;
-
+            this.pictureBoxEx1.Items.Clear();
             if(!historySelecting && (historyNodeList.Count == 0 || e.Node != historyNodeList.Current))
             {
                 historyNodeList.Add(e.Node);
@@ -2805,7 +2833,8 @@ namespace WzComparerR2
         }
 
         private void advTree2_AfterNodeSelect_2(object sender,AdvTreeNodeEventArgs e)
-        {
+        {  
+            this.pictureBoxEx1.Items.Clear();
             SelectedNode = advTree1.SelectedNode.AsWzNode();
             lastSelectedTree = advTree2;
             if(buttonItemAutoQuickView.Checked)
@@ -3612,6 +3641,7 @@ namespace WzComparerR2
         DevComponents.DotNetBar.ButtonItem SearchWzButton;
         DevComponents.DotNetBar.ButtonItem MapObjButton;
         DevComponents.DotNetBar.ButtonItem ImageViewerButton;
+        DevComponents.DotNetBar.ComboBoxItem AniNamesBox;
 
         void DB2ButtonClick(object sender,EventArgs e)
         {
@@ -3669,8 +3699,71 @@ namespace WzComparerR2
             else
                 ImageViewerForm.Instance.Show();
         }
+        
+        void AniNamesBox_SelectedIndexChanged(object sender,EventArgs e)
+        {
+            if(FirstSearchAnim)
+            {
+              
+                FirstSearchAnim=false;
+                return;
+            }
+            Wz_Node node = GetNode(AniNamesBox.SelectedItem.ToString());//advTree3.SelectedNode.AsWzNode();
+            
+            string aniName=AniNamesBox.SelectedItem.ToString();
+           
+            //添加到动画控件
+            if(node.Text.EndsWith(".atlas",StringComparison.OrdinalIgnoreCase))
+            {
+                var spineData = this.pictureBoxEx1.LoadSpineAnimation(node);
+
+                if(spineData != null)
+                {
+                    this.pictureBoxEx1.ShowAnimation(spineData);
+                    var aniItem = this.pictureBoxEx1.Items[0] as Animation.SpineAnimator;
+
+                    this.cmbItemAniNames.Items.Clear();
+                    this.cmbItemAniNames.Items.Add("");
+                    this.cmbItemAniNames.Items.AddRange(aniItem.Animations.ToArray());
+                    this.cmbItemAniNames.SelectedIndex = 0;
+
+                    this.cmbItemSkins.Visible = true;
+                    this.cmbItemSkins.Items.Clear();
+                    this.cmbItemSkins.Items.AddRange(aniItem.Skins.ToArray());
+                    this.cmbItemSkins.SelectedIndex = aniItem.Skins.IndexOf(aniItem.SelectedSkin);
+                }
+            }
+            else
+            {
+                var frameData = this.pictureBoxEx1.LoadFrameAnimation(node);
+
+                if(frameData != null)
+                {
+                    this.pictureBoxEx1.ShowAnimation(frameData);
+                    this.cmbItemAniNames.Items.Clear();
+                    this.cmbItemSkins.Visible = false;
+                }
+                else
+                {
+                    var multiData = this.pictureBoxEx1.LoadMultiFrameAnimation(node);
+
+                    if(multiData != null)
+                    {
+                        this.pictureBoxEx1.ShowAnimation(multiData);
+                        var aniItem = this.pictureBoxEx1.Items[0] as Animation.MultiFrameAnimator;
+
+                        this.cmbItemAniNames.Items.Clear();
+                        this.cmbItemAniNames.Items.AddRange(aniItem.Animations.ToArray());
+                        this.cmbItemAniNames.SelectedIndex = 0;
+                    }
+                }
+            }
+            this.pictureBoxEx1.PictureName = aniName;
 
 
+        }
+        
+        
         private void MainForm_Load(object sender,EventArgs e)
         {
 
@@ -3741,6 +3834,15 @@ namespace WzComparerR2
             ImageViewerRibbonBar.Items.Add(ImageViewerButton);
             this.ribbonPanel1.Controls.Add(ImageViewerRibbonBar);
             this.expandableSplitter2.SplitPosition = 290;
+            //
+            AniNamesBox = new DevComponents.DotNetBar.ComboBoxItem();
+            this.AniNamesBox.ComboWidth = 180;
+            this.AniNamesBox.DropDownHeight = 106;
+            this.AniNamesBox.DropDownWidth = 380;
+            this.AniNamesBox.ItemHeight = 14;
+            this.AniNamesBox.Name = "AniNamesBox1";
+            this.AniNamesBox.SelectedIndexChanged += new System.EventHandler(this.AniNamesBox_SelectedIndexChanged);
+            this.ribbonBar5.Items.Add(AniNamesBox);
         }
     }
 
