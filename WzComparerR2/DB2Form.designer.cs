@@ -68,8 +68,6 @@ namespace WinFormsApp1
             this.Mob001 = new System.Windows.Forms.TabPage();
             this.Mob2 = new System.Windows.Forms.TabPage();
             this.Skill = new System.Windows.Forms.TabPage();
-            this.Skill001 = new System.Windows.Forms.TabPage();
-            this.Skill002 = new System.Windows.Forms.TabPage();
             this.Npc = new System.Windows.Forms.TabPage();
             this.Pet = new System.Windows.Forms.TabPage();
             this.Install = new System.Windows.Forms.TabPage();
@@ -112,7 +110,7 @@ namespace WinFormsApp1
             this.panel1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(461, 35);
+            this.panel1.Size = new System.Drawing.Size(637, 35);
             this.panel1.TabIndex = 3;
             // 
             // SearchBox
@@ -176,9 +174,7 @@ namespace WinFormsApp1
             "怪物(1)",
             "怪物(2)",
             "怪物(3)",
-            "技能(1)",
-            "技能(2)",
-            "技能(3)",
+            "技能",
             "Npc",
             "寵物",
             "椅子",
@@ -347,8 +343,6 @@ namespace WinFormsApp1
             this.tabControl1.Controls.Add(this.Mob001);
             this.tabControl1.Controls.Add(this.Mob2);
             this.tabControl1.Controls.Add(this.Skill);
-            this.tabControl1.Controls.Add(this.Skill001);
-            this.tabControl1.Controls.Add(this.Skill002);
             this.tabControl1.Controls.Add(this.Npc);
             this.tabControl1.Controls.Add(this.Pet);
             this.tabControl1.Controls.Add(this.Install);
@@ -370,7 +364,7 @@ namespace WinFormsApp1
             this.tabControl1.Location = new System.Drawing.Point(0, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(461, 506);
+            this.tabControl1.Size = new System.Drawing.Size(637, 506);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -381,7 +375,7 @@ namespace WinFormsApp1
             this.Cash.Location = new System.Drawing.Point(4, 35);
             this.Cash.Name = "Cash";
             this.Cash.Padding = new System.Windows.Forms.Padding(3);
-            this.Cash.Size = new System.Drawing.Size(453, 467);
+            this.Cash.Size = new System.Drawing.Size(629, 467);
             this.Cash.TabIndex = 0;
             this.Cash.Text = "點商";
             this.Cash.UseVisualStyleBackColor = true;
@@ -392,7 +386,7 @@ namespace WinFormsApp1
             this.Consume.Location = new System.Drawing.Point(4, 35);
             this.Consume.Name = "Consume";
             this.Consume.Padding = new System.Windows.Forms.Padding(3);
-            this.Consume.Size = new System.Drawing.Size(453, 467);
+            this.Consume.Size = new System.Drawing.Size(629, 467);
             this.Consume.TabIndex = 1;
             this.Consume.Text = "消耗";
             this.Consume.UseVisualStyleBackColor = true;
@@ -403,7 +397,7 @@ namespace WinFormsApp1
             this.Weapon.Location = new System.Drawing.Point(4, 35);
             this.Weapon.Name = "Weapon";
             this.Weapon.Padding = new System.Windows.Forms.Padding(3);
-            this.Weapon.Size = new System.Drawing.Size(453, 467);
+            this.Weapon.Size = new System.Drawing.Size(629, 467);
             this.Weapon.TabIndex = 2;
             this.Weapon.Text = "武器";
             this.Weapon.UseVisualStyleBackColor = true;
@@ -414,7 +408,7 @@ namespace WinFormsApp1
             this.Cap.Location = new System.Drawing.Point(4, 35);
             this.Cap.Name = "Cap";
             this.Cap.Padding = new System.Windows.Forms.Padding(3);
-            this.Cap.Size = new System.Drawing.Size(453, 467);
+            this.Cap.Size = new System.Drawing.Size(629, 467);
             this.Cap.TabIndex = 3;
             this.Cap.Text = "帽子";
             this.Cap.UseVisualStyleBackColor = true;
@@ -425,7 +419,7 @@ namespace WinFormsApp1
             this.Coat.Location = new System.Drawing.Point(4, 35);
             this.Coat.Name = "Coat";
             this.Coat.Padding = new System.Windows.Forms.Padding(3);
-            this.Coat.Size = new System.Drawing.Size(453, 467);
+            this.Coat.Size = new System.Drawing.Size(629, 467);
             this.Coat.TabIndex = 4;
             this.Coat.Text = "上衣";
             this.Coat.UseVisualStyleBackColor = true;
@@ -436,7 +430,7 @@ namespace WinFormsApp1
             this.Longcoat.Location = new System.Drawing.Point(4, 35);
             this.Longcoat.Name = "Longcoat";
             this.Longcoat.Padding = new System.Windows.Forms.Padding(3);
-            this.Longcoat.Size = new System.Drawing.Size(453, 467);
+            this.Longcoat.Size = new System.Drawing.Size(629, 467);
             this.Longcoat.TabIndex = 5;
             this.Longcoat.Text = "套服";
             this.Longcoat.UseVisualStyleBackColor = true;
@@ -447,7 +441,7 @@ namespace WinFormsApp1
             this.Pants.Location = new System.Drawing.Point(4, 35);
             this.Pants.Name = "Pants";
             this.Pants.Padding = new System.Windows.Forms.Padding(3);
-            this.Pants.Size = new System.Drawing.Size(453, 467);
+            this.Pants.Size = new System.Drawing.Size(629, 467);
             this.Pants.TabIndex = 6;
             this.Pants.Text = "褲子";
             this.Pants.UseVisualStyleBackColor = true;
@@ -458,7 +452,7 @@ namespace WinFormsApp1
             this.Shoes.Location = new System.Drawing.Point(4, 35);
             this.Shoes.Name = "Shoes";
             this.Shoes.Padding = new System.Windows.Forms.Padding(3);
-            this.Shoes.Size = new System.Drawing.Size(453, 467);
+            this.Shoes.Size = new System.Drawing.Size(629, 467);
             this.Shoes.TabIndex = 7;
             this.Shoes.Text = "鞋子";
             this.Shoes.UseVisualStyleBackColor = true;
@@ -469,7 +463,7 @@ namespace WinFormsApp1
             this.Glove.Location = new System.Drawing.Point(4, 35);
             this.Glove.Name = "Glove";
             this.Glove.Padding = new System.Windows.Forms.Padding(3);
-            this.Glove.Size = new System.Drawing.Size(453, 467);
+            this.Glove.Size = new System.Drawing.Size(629, 467);
             this.Glove.TabIndex = 8;
             this.Glove.Text = "手套";
             this.Glove.UseVisualStyleBackColor = true;
@@ -480,7 +474,7 @@ namespace WinFormsApp1
             this.Ring.Location = new System.Drawing.Point(4, 35);
             this.Ring.Name = "Ring";
             this.Ring.Padding = new System.Windows.Forms.Padding(3);
-            this.Ring.Size = new System.Drawing.Size(453, 467);
+            this.Ring.Size = new System.Drawing.Size(629, 467);
             this.Ring.TabIndex = 9;
             this.Ring.Text = "戒指";
             this.Ring.UseVisualStyleBackColor = true;
@@ -491,7 +485,7 @@ namespace WinFormsApp1
             this.Cape.Location = new System.Drawing.Point(4, 35);
             this.Cape.Name = "Cape";
             this.Cape.Padding = new System.Windows.Forms.Padding(3);
-            this.Cape.Size = new System.Drawing.Size(453, 467);
+            this.Cape.Size = new System.Drawing.Size(629, 467);
             this.Cape.TabIndex = 10;
             this.Cape.Text = "披風";
             this.Cape.UseVisualStyleBackColor = true;
@@ -502,7 +496,7 @@ namespace WinFormsApp1
             this.Accessory.Location = new System.Drawing.Point(4, 35);
             this.Accessory.Name = "Accessory";
             this.Accessory.Padding = new System.Windows.Forms.Padding(3);
-            this.Accessory.Size = new System.Drawing.Size(453, 467);
+            this.Accessory.Size = new System.Drawing.Size(629, 467);
             this.Accessory.TabIndex = 11;
             this.Accessory.Text = "臉飾";
             this.Accessory.UseVisualStyleBackColor = true;
@@ -513,7 +507,7 @@ namespace WinFormsApp1
             this.Shield.Location = new System.Drawing.Point(4, 35);
             this.Shield.Name = "Shield";
             this.Shield.Padding = new System.Windows.Forms.Padding(3);
-            this.Shield.Size = new System.Drawing.Size(453, 467);
+            this.Shield.Size = new System.Drawing.Size(629, 467);
             this.Shield.TabIndex = 12;
             this.Shield.Text = "盾牌";
             this.Shield.UseVisualStyleBackColor = true;
@@ -524,7 +518,7 @@ namespace WinFormsApp1
             this.TamingMob.Location = new System.Drawing.Point(4, 35);
             this.TamingMob.Name = "TamingMob";
             this.TamingMob.Padding = new System.Windows.Forms.Padding(3);
-            this.TamingMob.Size = new System.Drawing.Size(453, 467);
+            this.TamingMob.Size = new System.Drawing.Size(629, 467);
             this.TamingMob.TabIndex = 13;
             this.TamingMob.Text = "騎寵";
             this.TamingMob.UseVisualStyleBackColor = true;
@@ -535,7 +529,7 @@ namespace WinFormsApp1
             this.Hair.Location = new System.Drawing.Point(4, 35);
             this.Hair.Name = "Hair";
             this.Hair.Padding = new System.Windows.Forms.Padding(3);
-            this.Hair.Size = new System.Drawing.Size(453, 467);
+            this.Hair.Size = new System.Drawing.Size(629, 467);
             this.Hair.TabIndex = 14;
             this.Hair.Text = "髮型";
             this.Hair.UseVisualStyleBackColor = true;
@@ -546,7 +540,7 @@ namespace WinFormsApp1
             this.Face.Location = new System.Drawing.Point(4, 35);
             this.Face.Name = "Face";
             this.Face.Padding = new System.Windows.Forms.Padding(3);
-            this.Face.Size = new System.Drawing.Size(453, 467);
+            this.Face.Size = new System.Drawing.Size(629, 467);
             this.Face.TabIndex = 15;
             this.Face.Text = "臉型";
             this.Face.UseVisualStyleBackColor = true;
@@ -557,7 +551,7 @@ namespace WinFormsApp1
             this.Map1.Location = new System.Drawing.Point(4, 35);
             this.Map1.Name = "Map1";
             this.Map1.Padding = new System.Windows.Forms.Padding(3);
-            this.Map1.Size = new System.Drawing.Size(453, 467);
+            this.Map1.Size = new System.Drawing.Size(629, 467);
             this.Map1.TabIndex = 16;
             this.Map1.Text = "地圖(1)";
             this.Map1.UseVisualStyleBackColor = true;
@@ -568,7 +562,7 @@ namespace WinFormsApp1
             this.Map2.Location = new System.Drawing.Point(4, 35);
             this.Map2.Name = "Map2";
             this.Map2.Padding = new System.Windows.Forms.Padding(3);
-            this.Map2.Size = new System.Drawing.Size(453, 467);
+            this.Map2.Size = new System.Drawing.Size(629, 467);
             this.Map2.TabIndex = 17;
             this.Map2.Text = "地圖(2)";
             this.Map2.UseVisualStyleBackColor = true;
@@ -579,7 +573,7 @@ namespace WinFormsApp1
             this.Map3.Location = new System.Drawing.Point(4, 35);
             this.Map3.Name = "Map3";
             this.Map3.Padding = new System.Windows.Forms.Padding(3);
-            this.Map3.Size = new System.Drawing.Size(453, 467);
+            this.Map3.Size = new System.Drawing.Size(629, 467);
             this.Map3.TabIndex = 18;
             this.Map3.Text = "地圖(3)";
             this.Map3.UseVisualStyleBackColor = true;
@@ -590,7 +584,7 @@ namespace WinFormsApp1
             this.Mob.Location = new System.Drawing.Point(4, 35);
             this.Mob.Name = "Mob";
             this.Mob.Padding = new System.Windows.Forms.Padding(3);
-            this.Mob.Size = new System.Drawing.Size(453, 467);
+            this.Mob.Size = new System.Drawing.Size(629, 467);
             this.Mob.TabIndex = 19;
             this.Mob.Text = "怪物(1)";
             this.Mob.UseVisualStyleBackColor = true;
@@ -601,7 +595,7 @@ namespace WinFormsApp1
             this.Mob001.Location = new System.Drawing.Point(4, 35);
             this.Mob001.Name = "Mob001";
             this.Mob001.Padding = new System.Windows.Forms.Padding(3);
-            this.Mob001.Size = new System.Drawing.Size(453, 467);
+            this.Mob001.Size = new System.Drawing.Size(629, 467);
             this.Mob001.TabIndex = 20;
             this.Mob001.Text = "怪物(2)";
             this.Mob001.UseVisualStyleBackColor = true;
@@ -612,7 +606,7 @@ namespace WinFormsApp1
             this.Mob2.Location = new System.Drawing.Point(4, 35);
             this.Mob2.Name = "Mob2";
             this.Mob2.Padding = new System.Windows.Forms.Padding(3);
-            this.Mob2.Size = new System.Drawing.Size(453, 467);
+            this.Mob2.Size = new System.Drawing.Size(629, 467);
             this.Mob2.TabIndex = 21;
             this.Mob2.Text = "怪物(3)";
             this.Mob2.UseVisualStyleBackColor = true;
@@ -623,32 +617,10 @@ namespace WinFormsApp1
             this.Skill.Location = new System.Drawing.Point(4, 35);
             this.Skill.Name = "Skill";
             this.Skill.Padding = new System.Windows.Forms.Padding(3);
-            this.Skill.Size = new System.Drawing.Size(453, 467);
+            this.Skill.Size = new System.Drawing.Size(629, 467);
             this.Skill.TabIndex = 22;
-            this.Skill.Text = "技能(1)";
+            this.Skill.Text = "技能";
             this.Skill.UseVisualStyleBackColor = true;
-            // 
-            // Skill001
-            // 
-            this.Skill001.ImageIndex = 18;
-            this.Skill001.Location = new System.Drawing.Point(4, 35);
-            this.Skill001.Name = "Skill001";
-            this.Skill001.Padding = new System.Windows.Forms.Padding(3);
-            this.Skill001.Size = new System.Drawing.Size(453, 467);
-            this.Skill001.TabIndex = 23;
-            this.Skill001.Text = "技能(2)";
-            this.Skill001.UseVisualStyleBackColor = true;
-            // 
-            // Skill002
-            // 
-            this.Skill002.ImageIndex = 18;
-            this.Skill002.Location = new System.Drawing.Point(4, 35);
-            this.Skill002.Name = "Skill002";
-            this.Skill002.Padding = new System.Windows.Forms.Padding(3);
-            this.Skill002.Size = new System.Drawing.Size(453, 467);
-            this.Skill002.TabIndex = 24;
-            this.Skill002.Text = "技能(3)";
-            this.Skill002.UseVisualStyleBackColor = true;
             // 
             // Npc
             // 
@@ -656,7 +628,7 @@ namespace WinFormsApp1
             this.Npc.Location = new System.Drawing.Point(4, 35);
             this.Npc.Name = "Npc";
             this.Npc.Padding = new System.Windows.Forms.Padding(3);
-            this.Npc.Size = new System.Drawing.Size(453, 467);
+            this.Npc.Size = new System.Drawing.Size(629, 467);
             this.Npc.TabIndex = 25;
             this.Npc.Text = "Npc";
             this.Npc.UseVisualStyleBackColor = true;
@@ -667,7 +639,7 @@ namespace WinFormsApp1
             this.Pet.Location = new System.Drawing.Point(4, 35);
             this.Pet.Name = "Pet";
             this.Pet.Padding = new System.Windows.Forms.Padding(3);
-            this.Pet.Size = new System.Drawing.Size(453, 467);
+            this.Pet.Size = new System.Drawing.Size(629, 467);
             this.Pet.TabIndex = 26;
             this.Pet.Text = "寵物";
             this.Pet.UseVisualStyleBackColor = true;
@@ -678,7 +650,7 @@ namespace WinFormsApp1
             this.Install.Location = new System.Drawing.Point(4, 35);
             this.Install.Name = "Install";
             this.Install.Padding = new System.Windows.Forms.Padding(3);
-            this.Install.Size = new System.Drawing.Size(453, 467);
+            this.Install.Size = new System.Drawing.Size(629, 467);
             this.Install.TabIndex = 27;
             this.Install.Text = "椅子";
             this.Install.UseVisualStyleBackColor = true;
@@ -689,7 +661,7 @@ namespace WinFormsApp1
             this.Android.Location = new System.Drawing.Point(4, 35);
             this.Android.Name = "Android";
             this.Android.Padding = new System.Windows.Forms.Padding(3);
-            this.Android.Size = new System.Drawing.Size(453, 467);
+            this.Android.Size = new System.Drawing.Size(629, 467);
             this.Android.TabIndex = 28;
             this.Android.Text = "機器人";
             this.Android.UseVisualStyleBackColor = true;
@@ -700,7 +672,7 @@ namespace WinFormsApp1
             this.Mechanic.Location = new System.Drawing.Point(4, 35);
             this.Mechanic.Name = "Mechanic";
             this.Mechanic.Padding = new System.Windows.Forms.Padding(3);
-            this.Mechanic.Size = new System.Drawing.Size(453, 467);
+            this.Mechanic.Size = new System.Drawing.Size(629, 467);
             this.Mechanic.TabIndex = 29;
             this.Mechanic.Text = "機械";
             this.Mechanic.UseVisualStyleBackColor = true;
@@ -711,7 +683,7 @@ namespace WinFormsApp1
             this.PetEquip.Location = new System.Drawing.Point(4, 35);
             this.PetEquip.Name = "PetEquip";
             this.PetEquip.Padding = new System.Windows.Forms.Padding(3);
-            this.PetEquip.Size = new System.Drawing.Size(453, 467);
+            this.PetEquip.Size = new System.Drawing.Size(629, 467);
             this.PetEquip.TabIndex = 30;
             this.PetEquip.Text = "寵物裝備";
             this.PetEquip.UseVisualStyleBackColor = true;
@@ -722,7 +694,7 @@ namespace WinFormsApp1
             this.Bits.Location = new System.Drawing.Point(4, 35);
             this.Bits.Name = "Bits";
             this.Bits.Padding = new System.Windows.Forms.Padding(3);
-            this.Bits.Size = new System.Drawing.Size(453, 467);
+            this.Bits.Size = new System.Drawing.Size(629, 467);
             this.Bits.TabIndex = 31;
             this.Bits.Text = "拼圖";
             this.Bits.UseVisualStyleBackColor = true;
@@ -733,7 +705,7 @@ namespace WinFormsApp1
             this.MonsterBattle.Location = new System.Drawing.Point(4, 35);
             this.MonsterBattle.Name = "MonsterBattle";
             this.MonsterBattle.Padding = new System.Windows.Forms.Padding(3);
-            this.MonsterBattle.Size = new System.Drawing.Size(453, 467);
+            this.MonsterBattle.Size = new System.Drawing.Size(629, 467);
             this.MonsterBattle.TabIndex = 32;
             this.MonsterBattle.Text = "魔獸裝備";
             this.MonsterBattle.UseVisualStyleBackColor = true;
@@ -744,7 +716,7 @@ namespace WinFormsApp1
             this.Totem.Location = new System.Drawing.Point(4, 35);
             this.Totem.Name = "Totem";
             this.Totem.Padding = new System.Windows.Forms.Padding(3);
-            this.Totem.Size = new System.Drawing.Size(453, 467);
+            this.Totem.Size = new System.Drawing.Size(629, 467);
             this.Totem.TabIndex = 33;
             this.Totem.Text = "圖騰";
             this.Totem.UseVisualStyleBackColor = true;
@@ -755,7 +727,7 @@ namespace WinFormsApp1
             this.Morph.Location = new System.Drawing.Point(4, 35);
             this.Morph.Name = "Morph";
             this.Morph.Padding = new System.Windows.Forms.Padding(3);
-            this.Morph.Size = new System.Drawing.Size(453, 467);
+            this.Morph.Size = new System.Drawing.Size(629, 467);
             this.Morph.TabIndex = 34;
             this.Morph.Text = "變身";
             this.Morph.UseVisualStyleBackColor = true;
@@ -766,7 +738,7 @@ namespace WinFormsApp1
             this.Familiar.Location = new System.Drawing.Point(4, 35);
             this.Familiar.Name = "Familiar";
             this.Familiar.Padding = new System.Windows.Forms.Padding(3);
-            this.Familiar.Size = new System.Drawing.Size(453, 467);
+            this.Familiar.Size = new System.Drawing.Size(629, 467);
             this.Familiar.TabIndex = 35;
             this.Familiar.Text = "萌獸";
             this.Familiar.UseVisualStyleBackColor = true;
@@ -777,7 +749,7 @@ namespace WinFormsApp1
             this.DamageSkin.Location = new System.Drawing.Point(4, 35);
             this.DamageSkin.Name = "DamageSkin";
             this.DamageSkin.Padding = new System.Windows.Forms.Padding(3);
-            this.DamageSkin.Size = new System.Drawing.Size(453, 467);
+            this.DamageSkin.Size = new System.Drawing.Size(629, 467);
             this.DamageSkin.TabIndex = 36;
             this.DamageSkin.Text = "傷害字形";
             this.DamageSkin.UseVisualStyleBackColor = true;
@@ -788,7 +760,7 @@ namespace WinFormsApp1
             this.Etc.Location = new System.Drawing.Point(4, 35);
             this.Etc.Name = "Etc";
             this.Etc.Padding = new System.Windows.Forms.Padding(3);
-            this.Etc.Size = new System.Drawing.Size(453, 467);
+            this.Etc.Size = new System.Drawing.Size(629, 467);
             this.Etc.TabIndex = 37;
             this.Etc.Text = "其他";
             this.Etc.UseVisualStyleBackColor = true;
@@ -799,7 +771,7 @@ namespace WinFormsApp1
             this.Reactor.Location = new System.Drawing.Point(4, 35);
             this.Reactor.Name = "Reactor";
             this.Reactor.Padding = new System.Windows.Forms.Padding(3);
-            this.Reactor.Size = new System.Drawing.Size(453, 467);
+            this.Reactor.Size = new System.Drawing.Size(629, 467);
             this.Reactor.TabIndex = 38;
             this.Reactor.Text = "Reactor";
             this.Reactor.UseVisualStyleBackColor = true;
@@ -809,7 +781,7 @@ namespace WinFormsApp1
             this.Music.ImageIndex = 33;
             this.Music.Location = new System.Drawing.Point(4, 35);
             this.Music.Name = "Music";
-            this.Music.Size = new System.Drawing.Size(453, 467);
+            this.Music.Size = new System.Drawing.Size(629, 467);
             this.Music.TabIndex = 39;
             this.Music.Text = "音樂";
             this.Music.UseVisualStyleBackColor = true;
@@ -856,7 +828,7 @@ namespace WinFormsApp1
             // DB2Form
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(461, 541);
+            this.ClientSize = new System.Drawing.Size(637, 541);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
@@ -907,8 +879,6 @@ namespace WinFormsApp1
         private System.Windows.Forms.TabPage Mob001;
         private System.Windows.Forms.TabPage Mob2;
         private System.Windows.Forms.TabPage Skill;
-        private System.Windows.Forms.TabPage Skill001;
-        private System.Windows.Forms.TabPage Skill002;
         private System.Windows.Forms.TabPage Npc;
         private System.Windows.Forms.TabPage Pet;
         private System.Windows.Forms.TabPage Install;

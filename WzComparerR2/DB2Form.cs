@@ -1237,119 +1237,19 @@ namespace WinFormsApp1
             }
             return null;
         }
-        void LoadSkill(int Part)
+        void LoadSkill()
         {
-            if(MainForm.HasSkill001)
+            Bitmap Icon;
+            foreach(var L1 in MainForm.TreeNode.Nodes)
             {
-                Bitmap Icon = null, BookIcon;
-                foreach(var Iter in GetNode("String/Skill.img").Nodes)
-                {
-                    var ID = Iter.Text;
-                    var LeftNum = LeftStr(ID,1);
-                    switch(Part)
-                    {
-                    case 1:
-                        if(LeftNum == "6" || LeftNum == "7" || LeftNum == "8" || LeftNum == "9")
-                            continue;
-                        break;
-                    case 2:
-                        if(LeftNum == "1" || LeftNum == "2" || LeftNum == "3" || LeftNum == "4" || LeftNum == "5" || LeftNum == "8" || LeftNum == "9")
-                            continue;
-                        break;
-                    case 3:
-                        if(LeftNum == "1" || LeftNum == "2" || LeftNum == "3" || LeftNum == "4" || LeftNum == "5" || LeftNum == "6" || LeftNum == "7")
-                            continue;
-                        break;
-                    }
+                if(LeftStr(L1.Text,5) != "Skill")
+                    continue;
 
-
-                    var BookID = ID;
-                    string BookName = "";
-                    if(GetNode("String/Skill.img/" + BookID) != null)
-                        BookName = GetNode("String/Skill.img/" + BookID).GetValue2("bookName","");
-
-                    if(GetNode("Skill/" + ID + ".img/info/icon") != null)
-                        BookIcon = GetNode("Skill/" + ID + ".img/info/icon").ExtractPng();
-                    else
-                        BookIcon = null;
-                    if(BookIcon != null)
-                        Grid.Rows.Add(BookID,BookIcon,BookName,"","");
-                    if(GetNode(GetIDPath(ID)) == null)
-                        continue;
-
-                    DumpData2(GetNode(GetIDPath(ID)));
-                    var SkillID = ID;
-
-                    if(GetNode(GetIDPath(ID) + "/icon") != null)
-                        Icon = GetNode(GetIDPath(ID) + "/icon").ExtractPng();
-                    string SkillName = "", Desc = "";
-                    if(GetNode("String/Skill.img/" + SkillID) != null)
-                    {
-                        SkillName = GetNode("String/Skill.img/" + SkillID).GetValue2("name","");
-                        Desc = GetNode("String/Skill.img/" + SkillID).GetValue2("desc","");
-                    }
-                    string hDesc = "";
-                    var Child = GetNode("String/Skill.img/" + SkillID);
-                    if(Child != null)
-                    {
-                        if(Child.GetNode("h") != null)
-                        {
-                            if(Child.GetNode("h").Value is string)
-                            {
-                                hDesc = Child.GetNode("h").Value.ToString();
-                            }
-                            hDesc = hDesc.Replace("mpConMP","mpCon MP");
-                            hDesc = hDesc.Replace(","," ,");
-                            Common = GetNode(GetIDPath(ID) + "/common");
-                            if(Common != null)
-                            {
-                                MaxLev = Common.GetValue2("maxLevel",1);
-                                if(hDesc != "")
-                                {
-                                    hDesc = "Lv." + MaxLev.ToString() + "= " + Regex.Replace(hDesc,"\\#[0-9,_,a-z,A-Z,\\.]+",CommonMatch);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for(int i = 1;i <= 30;i++)
-                            {
-                                if(Child.GetNode("h" + i.ToString()) != null)
-                                    hDesc = "Lv." + i.ToString() + "= " + Child.GetNode("h" + i.ToString()).Value.ToString();
-                            }
-                        }
-                    }
-
-                    Grid.Rows.Add(SkillID,Icon,SkillName,Desc,hDesc,"");
-                }
-                for(int i = 0;i < RowList.Count;i++)
-                    Grid[5,i].Value = RowList[i];
-
-                Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
-            }
-            else
-            {
-                Bitmap Icon;
-                foreach(var img in GetNode("Skill").Nodes)
+                foreach(var img in L1.Nodes)
                 {
                     if(Char.IsNumber(img.Text,0))
                     {
                         var LeftNum = LeftStr(img.Text,1);
-                        switch(Part)
-                        {
-                        case 1:
-                            if(LeftNum == "6" || LeftNum == "7" || LeftNum == "8" || LeftNum == "9")
-                                continue;
-                            break;
-                        case 2:
-                            if(LeftNum == "1" || LeftNum == "2" || LeftNum == "3" || LeftNum == "4" || LeftNum == "5" || LeftNum == "8" || LeftNum == "9")
-                                continue;
-                            break;
-                        case 3:
-                            if(LeftNum == "1" || LeftNum == "2" || LeftNum == "3" || LeftNum == "4" || LeftNum == "5" || LeftNum == "6" || LeftNum == "7")
-                                continue;
-                            break;
-                        }
 
                         DumpData2(GetNode("Skill/" + img.Text + "/info"));
 
@@ -1419,13 +1319,13 @@ namespace WinFormsApp1
                             }
                         }
                     }
-
                 }
-                for(int i = 0;i < RowList.Count;i++)
-                    Grid[5,i].Value = RowList[i];
-
-                Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
             }
+            for(int i = 0;i < RowList.Count;i++)
+                Grid[5,i].Value = RowList[i];
+
+            Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
+
         }
         void LoadNpc()
         {
@@ -1681,9 +1581,9 @@ namespace WinFormsApp1
 
             Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
         }
-        DataViewer[] DataGrid = new DataViewer[40];
-        DataViewer[] TempGrid = new DataViewer[40];
-        bool FirstLoadBIN = false;
+        DataViewer[] DataGrid = new DataViewer[38];
+        DataViewer[] TempGrid = new DataViewer[38];
+
         void LoadBIN()
         {
             var BinFile = System.Environment.CurrentDirectory + "\\" + Grid.Parent.Name + ".BIN";
@@ -1698,11 +1598,7 @@ namespace WinFormsApp1
                     Graphic.DrawString("Loading...",Font,Brushes.Black,300,200);
                 }
                 Grid.LoadBin(BinFile);
-                if(!FirstLoadBIN)
-                {
-                    MessageBox.Show("提示: 必須指定楓之谷資料夾路徑才會顯示道具 ToolTip UI");
-                    FirstLoadBIN = true;
-                }
+
             }
             else
                 MessageBox.Show(Grid.Parent.Name + ".BIN" + " not found");
@@ -1798,10 +1694,10 @@ namespace WinFormsApp1
             {
             case 0:
             case 1:
-            case 26:
-            case 27:
-            case 36:
-            case 37:
+            case 24:
+            case 25:
+            case 34:
+            case 35:
                 return "Item.wz";
                 break;
 
@@ -1819,13 +1715,13 @@ namespace WinFormsApp1
             case 13:
             case 14:
             case 15:
+            case 26:
+            case 27:
             case 28:
             case 29:
             case 30:
             case 31:
-            case 32:
             case 33:
-            case 35:
                 return "Character.wz";
                 break;
             case 16:
@@ -1845,19 +1741,14 @@ namespace WinFormsApp1
             case 22:
                 return "Skill.wz";
                 break;
+          
             case 23:
-                return "Skill001.wz";
-                break;
-            case 24:
-                return "Skill002.wz";
-                break;
-            case 25:
                 return "Npc.wz";
                 break;
-            case 34:
+            case 32:
                 return "Morph.wz";
                 break;
-            case 38:
+            case 36:
                 return "Reactor.wz";
                 break;
             }
@@ -1884,9 +1775,9 @@ namespace WinFormsApp1
             {
             case 0:
             case 1:
-            case 26:
-            case 27:
-            case 37:
+            case 24:
+            case 25:
+            case 35:
                 LoadItem();
                 break;
 
@@ -1904,12 +1795,12 @@ namespace WinFormsApp1
             case 13:
             case 14:
             case 15:
+            case 26:
+            case 27:
             case 28:
             case 29:
             case 30:
             case 31:
-            case 32:
-            case 33:
                 LoadCharacter();
                 break;
             case 16:
@@ -1932,31 +1823,26 @@ namespace WinFormsApp1
                 LoadMob(3);
                 break;
             case 22:
-                LoadSkill(1);
+                LoadSkill();
                 break;
+          
             case 23:
-                LoadSkill(2);
-                break;
-            case 24:
-                LoadSkill(3);
-                break;
-            case 25:
                 LoadNpc();
                 break;
-            case 34:
+            case 32:
                 LoadMorph();
                 break;
-            case 35:
+            case 33:
                 LoadFamiliar();
                 break;
-            case 36:
+            case 34:
                 LoadDamageSkin();
                 break;
-            case 38:
+            case 36:
                 LoadReactor();
                 break;
 
-            case 39:
+            case 37:
                 LoadMusic();
                 break;
 
@@ -2041,8 +1927,8 @@ namespace WinFormsApp1
             case 1:
                 return "Item/Consume/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
+            case 32:
             case 34:
-            case 36:
                 return "Item/Consume/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
 
@@ -2099,8 +1985,7 @@ namespace WinFormsApp1
                 break;
 
             case 22:
-            case 23:
-            case 24:
+          
                 var Left1 = LeftStr(ID,1);
                 switch(Left1)
                 {
@@ -2112,14 +1997,14 @@ namespace WinFormsApp1
                     return "Skill/" + (int.Parse(ID) / 10000).ToString() + ".img/skill/" + ID;
                 }
                 break;
-            case 25:
+            case 23:
                 return "Npc/" + ID + ".img";
                 break;
-            case 26:
+            case 24:
                 return "Item/Pet/" + ID + ".img";
                 break;
 
-            case 27:
+            case 25:
                 //   if(Arc.ItemWz == null)
                 //     return null;
                 if(GetNode("Item/Install/03010.img") != null)
@@ -2150,30 +2035,30 @@ namespace WinFormsApp1
                 }
                 break;
 
-            case 28:
+            case 26:
                 return "Character/Android/" + ID + ".img";
                 break;
-            case 29:
+            case 27:
                 return "Character/Mechanic/" + ID + ".img";
                 break;
 
-            case 30:
+            case 28:
                 return "Character/PetEquip/" + ID + ".img";
                 break;
 
-            case 31:
+            case 29:
                 return "Character/Bits/" + ID + ".img";
                 break;
 
-            case 32:
+            case 30:
                 return "Character/MonsterBattle/" + ID + ".img";
                 break;
 
-            case 33:
+            case 31:
                 return "Character/Totem/" + ID + ".img";
                 break;
 
-            case 37:
+            case 35:
                 return "Item/Etc/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
             }
@@ -2341,7 +2226,7 @@ namespace WinFormsApp1
 
         }
         FrmMapRender2 mapRenderGame2;
-        
+
         void ShowMap(Wz_Node MapImg)
         {
             Wz_Node node = MapImg;
@@ -2373,8 +2258,8 @@ namespace WinFormsApp1
                             {
                                 if(this.mapRenderGame2 != null)
                                 {
-                                   
-                                  // this.mapRenderGame2.form.Visible = false;
+
+                                    // this.mapRenderGame2.form.Visible = false;
                                     this.mapRenderGame2.Dispose();
                                     this.mapRenderGame2 = null;
                                 }
@@ -2382,7 +2267,7 @@ namespace WinFormsApp1
                                 this.mapRenderGame2 = new FrmMapRender2(img) { StringLinker = sl };
                                 this.mapRenderGame2.Window.Title = "MapRender ";
                                 this.mapRenderGame2.form.TopMost = true;
-                               
+
 
                                 try
                                 {
@@ -2393,7 +2278,7 @@ namespace WinFormsApp1
                                 }
                                 finally
                                 {
-                                   // this.mapRenderGame2 = null;
+                                    // this.mapRenderGame2 = null;
                                 }
                             }
 #if !DEBUG
@@ -2419,7 +2304,7 @@ namespace WinFormsApp1
                 return;
             if(e.RowIndex >= Grid.RowCount)
                 return;
-            if(tabIndex == 38 || tabIndex == 35)
+            if(tabIndex == 36 || tabIndex == 33)
                 return;
 
             if(e.RowIndex >= Grid.RowCount)
@@ -2432,16 +2317,16 @@ namespace WinFormsApp1
                 if(tabIndex == 16 || tabIndex == 17 || tabIndex == 18)
                 {
                     var imgNode = GetNode("Map/Map/Map" + LeftStr(SelectID,1)).FindNodeByPath(SelectID + ".img");
-                    if( this.mapRenderGame2!=null)
-                    { 
+                    if(this.mapRenderGame2 != null)
+                    {
                         this.mapRenderGame2.Dispose();
-                        this.mapRenderGame2=null;
+                        this.mapRenderGame2 = null;
                     }
                     ShowMap(imgNode);
                     if(imgNode != null)
                         MainForm.ExpandTreeNode(imgNode);
                 }
-                else if(tabIndex == 39)
+                else if(tabIndex == 37)
                 {
                     Wz_Sound sound = null;
                     if(GetNode("Sound/" + SelectID) != null)
@@ -2457,7 +2342,7 @@ namespace WinFormsApp1
                 }
                 else
                 {
-                    if(tabIndex == 39)
+                    if(tabIndex == 37)
                         return;
                     MainForm.tooltipRef.Visible = true;
                     MainForm.tooltipRef.BringToFront();
@@ -2472,13 +2357,13 @@ namespace WinFormsApp1
         {
             MainForm.tooltipRef.Visible = false;
             if(this.mapRenderGame2 != null)
-            {  
-             
+            {
+
                 this.mapRenderGame2.Dispose();
                 //   this.mapRenderGame2.form.Visible = false;
                 this.mapRenderGame2 = null;
-              
-               
+
+
             }
         }
         void SetGrid()
@@ -2598,15 +2483,15 @@ namespace WinFormsApp1
                 //  Un4seen.Bass.BASSError error = soundPlayer.GetLastError();
                 //  MessageBox.Show("Bass初始化失败！\r\n\r\nerrorCode : " + (int)error + "(" + error + ")","虫子");
             }
-            for(int i = 0;i <= 39;i++)
+            for(int i = 0;i <= 37;i++)
             {
                 switch(i)
                 {
                 case 0:
                 case 1:
-                case 26:
-                case 27:
-                case 37:
+                case 24:
+                case 25:
+                case 35:
                     DataGrid[i] = new DataViewer(GridType.Item);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Item);
@@ -2627,12 +2512,12 @@ namespace WinFormsApp1
                 case 13:
                 case 14:
                 case 15:
+                case 26:
+                case 27:
                 case 28:
                 case 29:
                 case 30:
                 case 31:
-                case 32:
-                case 33:
                     DataGrid[i] = new DataViewer(GridType.Normal);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Normal);
@@ -2656,45 +2541,44 @@ namespace WinFormsApp1
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
                 case 22:
-                case 23:
-                case 24:
+               
                     DataGrid[i] = new DataViewer(GridType.Skill);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Skill);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 25:
+                case 23:
                     DataGrid[i] = new DataViewer(GridType.Npc);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Npc);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 34:
+                case 32:
                     DataGrid[i] = new DataViewer(GridType.Morph);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Morph);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 35:
+                case 33:
                     DataGrid[i] = new DataViewer(GridType.Familiar);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Familiar);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 36:
+                case 34:
                     DataGrid[i] = new DataViewer(GridType.DamageSkin);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.DamageSkin);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 38:
+                case 36:
                     DataGrid[i] = new DataViewer(GridType.Reactor);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Reactor);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
 
-                case 39:
+                case 37:
                     DataGrid[i] = new DataViewer(GridType.Music);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Music);
@@ -2702,10 +2586,7 @@ namespace WinFormsApp1
                     break;
 
 
-
                 }
-
-
 
             }
 
