@@ -1589,7 +1589,7 @@ namespace WinFormsApp1
             var BinFile = System.Environment.CurrentDirectory + "\\" + Grid.Parent.Name + ".BIN";
             if(System.IO.File.Exists(BinFile))
             {
-                for(int i = 0;i <= 38;i++)
+                for(int i = 0;i <= 37;i++)
                 {
                     DataGrid[i].Rows.Clear();
                     DataGrid[i].Refresh();
