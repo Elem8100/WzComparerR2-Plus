@@ -217,13 +217,13 @@ namespace WzComparerR2.CharaSim
         {
             switch (type)
             {
-                case GearType.body: return "纸娃娃(身体)";
-                case GearType.head: return "纸娃娃(头部)";
+                case GearType.body: return "紙娃娃(身體)";
+                case GearType.head: return "紙娃娃(頭部)";
                 case GearType.face:
-                case GearType.face2: return "纸娃娃(脸型)";
+                case GearType.face2: return "紙娃娃(臉型)";
                 case GearType.hair:
                 case GearType.hair2:
-                case GearType.hair3: return "纸娃娃(发型)";
+                case GearType.hair3: return "紙娃娃(髮型)";
                 case GearType.faceAccessory: return "臉飾";
                 case GearType.eyeAccessory: return "眼飾";
                 case GearType.earrings: return "耳環";
