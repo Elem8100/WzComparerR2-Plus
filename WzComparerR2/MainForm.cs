@@ -868,6 +868,7 @@ namespace WzComparerR2
             {
                 advTree1.EndUpdate();
             }
+
             if(PluginManager.FindWz(Wz_Type.Base) != null)
             {
                 foreach(var Iter in GetNode("Effect/SetEff.img").Nodes)
@@ -880,6 +881,7 @@ namespace WzComparerR2
                 foreach(var Iter in GetNode("Effect/ItemEff.img").Nodes)
                     ItemEffectList.AddOrReplace("0" + Iter.Text,Iter.FullPathToFile2());
             }
+
         }
 
         private void btnItemOpenImg_Click(object sender,EventArgs e)
@@ -947,6 +949,7 @@ namespace WzComparerR2
                 MessageBoxEx.Show("沒有選中要關閉的wz","OK");
                 return;
             }
+
             Node baseWzNode = advTree1.SelectedNode;
             while(baseWzNode.Parent != null)
                 baseWzNode = baseWzNode.Parent;
@@ -1075,16 +1078,30 @@ namespace WzComparerR2
                 }
             }
         }
-     
+
         void SearchAnim(Wz_Node Entry)
         {
             if(Entry != null)
             {
-                if(Entry.Text == "delay")
+                if(Entry.Text == "1")
                 {
-                    var Child = Entry.ParentNode.ParentNode;
-                    if(!this.AniNamesBox.Items.Contains(Child.FullPathToFile2()))
-                        this.AniNamesBox.Items.Add(Child.FullPathToFile2());
+                    if(Entry.GetNodeWzFile().Type == Wz_Type.Map)
+                    {
+                        if(Char.IsNumber(Entry.ParentNode.Text,0))
+                        {
+                            if(!this.AniNamesBox.Items.Contains(Entry.ParentNode.FullPathToFile2()))
+                                this.AniNamesBox.Items.Add(Entry.ParentNode.FullPathToFile2());
+                        }
+                    }
+                    else
+                    {
+                        var Child = Entry.ParentNode;
+                        if(!Char.IsNumber(Child.Text,0))
+                        {
+                            if(!this.AniNamesBox.Items.Contains(Child.FullPathToFile2()))
+                                this.AniNamesBox.Items.Add(Child.FullPathToFile2());
+                        }
+                    }
                 }
 
                 foreach(var E in Entry.Nodes)
@@ -1097,21 +1114,21 @@ namespace WzComparerR2
         private void advTree1_AfterNodeSelect(object sender,AdvTreeNodeEventArgs e)
         {
             Wz_Node selectedNode = e.Node.AsWzNode();
-           
+
 
             if(selectedNode == null)
             {
                 return;
             }
-           
+
 
             this.pictureBoxEx1.Items.Clear();
-            FirstSearchAnim=true;
+            FirstSearchAnim = true;
             AniNamesBox.Items.Clear();
             SearchAnim(GetNode(selectedNode.FullPathToFile2()));
-            if(AniNamesBox.Items.Count>0)
-              AniNamesBox.SelectedIndex=0;
-            
+            if(AniNamesBox.Items.Count > 0)
+                AniNamesBox.SelectedIndex = 0;
+
             listViewExWzDetail.BeginUpdate();
             listViewExWzDetail.Items.Clear();
 
@@ -1163,7 +1180,7 @@ namespace WzComparerR2
                         double ms = (Math.Round(QueryPerformance.GetLastInterval(),4) * 1000);
 
                         labelItemStatus.Text = "讀取image成功~用時" + ms + "ms...";
-         
+
                     }
                     else
                     {
@@ -2816,13 +2833,16 @@ namespace WzComparerR2
 
         private void advTree1_AfterNodeSelect_2(object sender,AdvTreeNodeEventArgs e)
         {
-            SelectedNode = advTree1.SelectedNode.AsWzNode();
-            var Path = SelectedNode.FullPath;
-            if(Path.Contains(".img"))
-                SavePngButton.Enabled = true;
-            else
-                SavePngButton.Enabled = false;
+            if(advTree1.Nodes.Count > 0)
+            {
+                SelectedNode = advTree1.SelectedNode.AsWzNode();
 
+                var Path = SelectedNode.FullPath;
+                if(Path.Contains(".img"))
+                    SavePngButton.Enabled = true;
+                else
+                    SavePngButton.Enabled = false;
+            }
 
             lastSelectedTree = advTree1;
             if(buttonItemAutoQuickView.Checked)
@@ -2833,7 +2853,7 @@ namespace WzComparerR2
         }
 
         private void advTree2_AfterNodeSelect_2(object sender,AdvTreeNodeEventArgs e)
-        {  
+        {
             this.pictureBoxEx1.Items.Clear();
             SelectedNode = advTree1.SelectedNode.AsWzNode();
             lastSelectedTree = advTree2;
@@ -3699,19 +3719,21 @@ namespace WzComparerR2
             else
                 ImageViewerForm.Instance.Show();
         }
-        
+
         void AniNamesBox_SelectedIndexChanged(object sender,EventArgs e)
         {
+
             if(FirstSearchAnim)
             {
-              
-                FirstSearchAnim=false;
+
+                FirstSearchAnim = false;
                 return;
             }
+
             Wz_Node node = GetNode(AniNamesBox.SelectedItem.ToString());//advTree3.SelectedNode.AsWzNode();
-            
-            string aniName=AniNamesBox.SelectedItem.ToString();
-           
+
+            string aniName = AniNamesBox.SelectedItem.ToString();
+
             //添加到动画控件
             if(node.Text.EndsWith(".atlas",StringComparison.OrdinalIgnoreCase))
             {
@@ -3762,8 +3784,8 @@ namespace WzComparerR2
 
 
         }
-        
-        
+
+
         private void MainForm_Load(object sender,EventArgs e)
         {
 
