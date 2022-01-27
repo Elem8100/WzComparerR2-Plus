@@ -70,7 +70,7 @@ namespace WzComparerR2.CharaSim
                 case GearPropType.incINTr: return "智力 : " + sign + value + "%";
                 case GearPropType.incLUK: return "幸運 : " + sign + value;
                 case GearPropType.incLUKr: return "幸運 : " + sign + value + "%";
-                case GearPropType.incAllStat: return "全部屬性 : " + sign + value;
+                case GearPropType.incAllStat: return "全部屬性: " + sign + value;
                 case GearPropType.incMHP: return "MaxHP： " + sign + value;
                 case GearPropType.incMHPr: return "MaxHP： " + sign + value + "%";
                 case GearPropType.incMMP: return "MaxMP： " + sign + value;
@@ -109,7 +109,7 @@ namespace WzComparerR2.CharaSim
 
                 case GearPropType.only: return value == 0 ? null : "專屬道具";
                 case GearPropType.tradeBlock: return value == 0 ? null : "無法交換";
-                case GearPropType.equipTradeBlock: return value == 0 ? null : "裝備後不可交易";
+                case GearPropType.equipTradeBlock: return value == 0 ? null : "裝備時不可交換";
                 case GearPropType.accountSharable: return value == 0 ? null : "只能在同帳號內移動";
                 case GearPropType.sharableOnce: return value == 0 ? null : "僅可在同帳號間移動一次\n(移動後無法更換)";
                 case GearPropType.onlyEquip: return value == 0 ? null : "只能單獨使用";
@@ -139,7 +139,7 @@ namespace WzComparerR2.CharaSim
 
                 case GearPropType.incMHP_incMMP: return "MaxHP/MaxMP： " + sign + value;
                 case GearPropType.incMHPr_incMMPr: return "MaxHP/MaxMP：" + sign + value + "%";
-                case GearPropType.incPAD_incMAD: return "攻擊/魔法攻擊力：" + sign + value;
+                case GearPropType.incPAD_incMAD: return "物理 / 魔法攻擊力 ：" + sign + value;
                 case GearPropType.incPDD_incMDD: return "物理防禦力：" + sign + value;
                 case GearPropType.incACC_incEVA: return "命中值/回避值：" + sign + value;
 
@@ -277,7 +277,7 @@ namespace WzComparerR2.CharaSim
                 case GearType.knuckle: return "指虎";
                 case GearType.gun: return "火槍";
                 case GearType.android: return "機器人";
-                case GearType.machineHeart: return "心臟";
+                case GearType.machineHeart: return "機器人心臟";
                 case GearType.pickaxe: return "採礦";
                 case GearType.shovel: return "採藥";
                 case GearType.pocket: return "口袋道具";
@@ -285,7 +285,7 @@ namespace WzComparerR2.CharaSim
                 case GearType.dualBow: return "雙弩槍";
                 case GearType.handCannon: return "加農砲";
                 case GearType.badge: return "胸章";
-                case GearType.emblem: return "象徽";
+                case GearType.emblem: return "徽章";
                 case GearType.soulShield: return "靈魂盾牌";
                 case GearType.demonShield: return "力量之盾";
                 case GearType.totem: return "圖騰";

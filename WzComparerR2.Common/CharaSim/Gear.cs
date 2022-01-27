@@ -468,6 +468,7 @@ namespace WzComparerR2.CharaSim
             {
                 switch (prop.Key)
                 {
+                  /*
                     case GearPropType.incAllStat:
                         if (combinedProps.ContainsKey(GearPropType.incAllStat_incMHP25))
                         {
@@ -481,7 +482,7 @@ namespace WzComparerR2.CharaSim
                             break;
                         }
                         goto default;
-
+                  */
                     case GearPropType.incMHP:
                         if (combinedProps.ContainsKey(GearPropType.incAllStat_incMHP25))
                         {
