@@ -365,11 +365,11 @@ namespace WzComparerR2.CharaSimControl
                 }
                 else if (specialPetSetEffectName && this.SetItem.SetItemName.EndsWith(" 세트"))
                 {
-                    effTitle = $"{Regex.Replace(this.SetItem.SetItemName, " 套裝$", "")} {effect.Key}套裝效果";
+                    effTitle = $"{Regex.Replace(this.SetItem.SetItemName, " 套裝$", "")} {effect.Key} set效果";
                 }
                 else
                 {
-                    effTitle = effect.Key + "套裝效果";
+                    effTitle = effect.Key + " set效果";
                 }
                 TextRenderer.DrawText(g, effTitle, GearGraphics.EquipDetailFont, new Point(10, picHeight), ((SolidBrush)GearGraphics.GreenBrush2).Color, TextFormatFlags.NoPadding);
                 picHeight += 15;
