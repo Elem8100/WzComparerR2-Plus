@@ -20,7 +20,7 @@ namespace WzComparerR2.CharaSim
         public int Level { get; set; }
         public string ConsumableFrom { get; set; }
         public string EndUseDate { get; set; }
-
+        public string SamplePath { get; set; }
         public List<GearLevelInfo> Levels { get; internal set; }
 
         public Dictionary<ItemPropType, int> Props { get; private set; }
@@ -115,6 +115,9 @@ namespace WzComparerR2.CharaSim
 
                         case "endUseDate":
                             item.EndUseDate = Convert.ToString(subNode.Value);
+                            break;
+                        case "samplePath":
+                            item.SamplePath = Convert.ToString(subNode.Value);
                             break;
 
                         case "exp":
