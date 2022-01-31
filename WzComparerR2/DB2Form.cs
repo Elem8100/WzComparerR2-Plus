@@ -125,6 +125,7 @@ namespace WinFormsApp1
             case "Install":
                 Child = GetNode("String/Ins.img");
                 break;
+
             default:
                 Child = GetNode("String/" + ItemDir + ".img");
                 break;
@@ -132,6 +133,8 @@ namespace WinFormsApp1
             }
             string ID;
             Bitmap Icon = null;
+
+
             foreach(var img in GetNode("Item/" + ItemDir).Nodes)
             {
                 if(ItemDir == "Pet")
@@ -143,6 +146,30 @@ namespace WinFormsApp1
                     var Desc = Child.GetValue2(ID + "/desc","  ");
                     DumpData2(GetNode("Item/Pet/" + img.Text + "/info"));
                     Grid.Rows.Add(ID,Icon,Name,Desc,"");
+                }
+                else if(ItemDir == "Special")
+                {
+                    if(img.Text != "0910.img")
+                        continue;
+
+                    List<string> CashPackages = new List<string>();
+                    foreach(var Iter in GetNode("Etc/CashPackage.img").Nodes)
+                    {
+                        CashPackages.Add(Iter.Text);
+
+                    }
+
+                    foreach(var Iter in GetNode("Item/Special/0910.img").Nodes)
+                    {
+                        if(CashPackages.Contains(Iter.Text))
+                        {
+                            ID = Iter.Text.IDString();
+                            if(Iter.GetNode("icon") != null)
+                                Icon = Iter.GetNode("icon").ExtractPng();
+                            Grid.Rows.Add(ID,Icon,Iter.GetValue2("name","  "),Iter.GetValue2("desc","  ")," ");
+                        }
+                    }
+                    CashPackages.Clear();
                 }
                 else
                 {
@@ -162,6 +189,7 @@ namespace WinFormsApp1
             Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
 
         }
+
 
         string GetTypes(string ID)
         {
@@ -1581,15 +1609,15 @@ namespace WinFormsApp1
 
             Grid.Sort(Grid.Columns[0],System.ComponentModel.ListSortDirection.Ascending);
         }
-        DataViewer[] DataGrid = new DataViewer[38];
-        DataViewer[] TempGrid = new DataViewer[38];
+        DataViewer[] DataGrid = new DataViewer[39];
+        DataViewer[] TempGrid = new DataViewer[39];
 
         void LoadBIN()
         {
             var BinFile = System.Environment.CurrentDirectory + "\\" + Grid.Parent.Name + ".BIN";
             if(System.IO.File.Exists(BinFile))
             {
-                for(int i = 0;i <= 37;i++)
+                for(int i = 0;i <= 38;i++)
                 {
                     DataGrid[i].Rows.Clear();
                     DataGrid[i].Refresh();
@@ -1694,14 +1722,14 @@ namespace WinFormsApp1
             {
             case 0:
             case 1:
-            case 24:
+            case 2:
             case 25:
-            case 34:
+            case 26:
             case 35:
+            case 36:
                 return "Item.wz";
                 break;
 
-            case 2:
             case 3:
             case 4:
             case 5:
@@ -1715,40 +1743,41 @@ namespace WinFormsApp1
             case 13:
             case 14:
             case 15:
-            case 26:
+            case 16:
             case 27:
             case 28:
             case 29:
             case 30:
             case 31:
-            case 33:
+            case 32:
+            case 34:
                 return "Character.wz";
                 break;
-            case 16:
             case 17:
             case 18:
+            case 19:
                 return "Map.wz";
                 break;
-            case 19:
+            case 20:
                 return "Mob.wz";
                 break;
-            case 20:
+            case 21:
                 return "Mob001.wz";
                 break;
-            case 21:
+            case 22:
                 return "Mob2.wz";
                 break;
-            case 22:
+            case 23:
                 return "Skill.wz";
                 break;
-          
-            case 23:
+
+            case 24:
                 return "Npc.wz";
                 break;
-            case 32:
+            case 33:
                 return "Morph.wz";
                 break;
-            case 36:
+            case 37:
                 return "Reactor.wz";
                 break;
             }
@@ -1775,13 +1804,13 @@ namespace WinFormsApp1
             {
             case 0:
             case 1:
-            case 24:
+            case 2:
             case 25:
-            case 35:
+            case 26:
+            case 36:
                 LoadItem();
                 break;
 
-            case 2:
             case 3:
             case 4:
             case 5:
@@ -1795,54 +1824,55 @@ namespace WinFormsApp1
             case 13:
             case 14:
             case 15:
-            case 26:
+            case 16:
             case 27:
             case 28:
             case 29:
             case 30:
             case 31:
+            case 32:
                 LoadCharacter();
                 break;
-            case 16:
+            case 17:
                 LoadMap(1);
                 break;
 
-            case 17:
+            case 18:
                 LoadMap(2);
                 break;
-            case 18:
+            case 19:
                 LoadMap(3);
                 break;
-            case 19:
+            case 20:
                 LoadMob(1);
                 break;
-            case 20:
+            case 21:
                 LoadMob(2);
                 break;
-            case 21:
+            case 22:
                 LoadMob(3);
                 break;
-            case 22:
+            case 23:
                 LoadSkill();
                 break;
-          
-            case 23:
+
+            case 24:
                 LoadNpc();
                 break;
-            case 32:
+            case 33:
                 LoadMorph();
                 break;
-            case 33:
+            case 34:
                 LoadFamiliar();
                 break;
-            case 34:
+            case 35:
                 LoadDamageSkin();
                 break;
-            case 36:
+            case 37:
                 LoadReactor();
                 break;
 
-            case 37:
+            case 38:
                 LoadMusic();
                 break;
 
@@ -1927,65 +1957,68 @@ namespace WinFormsApp1
             case 1:
                 return "Item/Consume/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
-            case 32:
-            case 34:
+
+            case 2:
+                return "Item/Special/0" + LeftStr(ID,3) + ".img/" + ID;
+            case 33:
+            case 35:
                 return "Item/Consume/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
 
-            case 2:
+            case 3:
                 return "Character/Weapon/" + ID + ".img";
                 break;
-            case 3:
+            case 4:
                 return "Character/Cap/" + ID + ".img";
                 break;
-            case 4:
+            case 5:
                 return "Character/Coat/" + ID + ".img";
                 break;
-            case 5:
+            case 6:
                 return "Character/Longcoat/" + ID + ".img";
                 break;
 
-            case 6:
+            case 7:
                 return "Character/Pants/" + ID + ".img";
                 break;
-            case 7:
+            case 8:
                 return "Character/Shoes/" + ID + ".img";
                 break;
-            case 8:
+            case 9:
                 return "Character/Glove/" + ID + ".img";
                 break;
-            case 9:
+            case 10:
                 return "Character/Ring/" + ID + ".img";
                 break;
 
-            case 10:
+            case 11:
                 return "Character/Cape/" + ID + ".img";
                 break;
 
-            case 11:
+            case 12:
                 return "Character/Accessory/" + ID + ".img";
                 break;
-            case 12:
+            case 13:
                 return "Character/Shield/" + ID + ".img";
                 break;
-            case 13:
+            case 14:
                 return "Character/TamingMob/" + ID + ".img";
                 break;
-            case 14:
+            case 15:
                 return "Character/Hair/" + ID + ".img";
                 break;
 
-            case 15:
+            case 16:
                 return "Character/Face/" + ID + ".img";
                 break;
-            case 19:
             case 20:
             case 21:
+            case 22:
                 return "Mob/" + ID + ".img";
                 break;
 
-            case 22:
-          
+            case 23:
+
                 var Left1 = LeftStr(ID,1);
                 switch(Left1)
                 {
@@ -1997,14 +2030,14 @@ namespace WinFormsApp1
                     return "Skill/" + (int.Parse(ID) / 10000).ToString() + ".img/skill/" + ID;
                 }
                 break;
-            case 23:
+            case 24:
                 return "Npc/" + ID + ".img";
                 break;
-            case 24:
+            case 25:
                 return "Item/Pet/" + ID + ".img";
                 break;
 
-            case 25:
+            case 26:
                 //   if(Arc.ItemWz == null)
                 //     return null;
                 if(GetNode("Item/Install/03010.img") != null)
@@ -2035,30 +2068,30 @@ namespace WinFormsApp1
                 }
                 break;
 
-            case 26:
+            case 27:
                 return "Character/Android/" + ID + ".img";
                 break;
-            case 27:
+            case 28:
                 return "Character/Mechanic/" + ID + ".img";
                 break;
 
-            case 28:
+            case 29:
                 return "Character/PetEquip/" + ID + ".img";
                 break;
 
-            case 29:
+            case 30:
                 return "Character/Bits/" + ID + ".img";
                 break;
 
-            case 30:
+            case 31:
                 return "Character/MonsterBattle/" + ID + ".img";
                 break;
 
-            case 31:
+            case 32:
                 return "Character/Totem/" + ID + ".img";
                 break;
 
-            case 35:
+            case 36:
                 return "Item/Etc/" + LeftStr(ID,4) + ".img/" + ID;
                 break;
             }
@@ -2304,7 +2337,7 @@ namespace WinFormsApp1
                 return;
             if(e.RowIndex >= Grid.RowCount)
                 return;
-            if(tabIndex == 36 || tabIndex == 33)
+            if(tabIndex == 37 || tabIndex == 34)
                 return;
 
             if(e.RowIndex >= Grid.RowCount)
@@ -2314,7 +2347,7 @@ namespace WinFormsApp1
             {
                 SelectID = DataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                if(tabIndex == 16 || tabIndex == 17 || tabIndex == 18)
+                if(tabIndex == 17 || tabIndex == 18 || tabIndex == 19)
                 {
                     var imgNode = GetNode("Map/Map/Map" + LeftStr(SelectID,1)).FindNodeByPath(SelectID + ".img");
                     if(this.mapRenderGame2 != null)
@@ -2326,7 +2359,7 @@ namespace WinFormsApp1
                     if(imgNode != null)
                         MainForm.ExpandTreeNode(imgNode);
                 }
-                else if(tabIndex == 37)
+                else if(tabIndex == 38)
                 {
                     Wz_Sound sound = null;
                     if(GetNode("Sound/" + SelectID) != null)
@@ -2342,7 +2375,7 @@ namespace WinFormsApp1
                 }
                 else
                 {
-                    if(tabIndex == 37)
+                    if(tabIndex == 38)
                         return;
                     MainForm.tooltipRef.Visible = true;
                     MainForm.tooltipRef.BringToFront();
@@ -2483,22 +2516,22 @@ namespace WinFormsApp1
                 //  Un4seen.Bass.BASSError error = soundPlayer.GetLastError();
                 //  MessageBox.Show("Bass初始化失败！\r\n\r\nerrorCode : " + (int)error + "(" + error + ")","虫子");
             }
-            for(int i = 0;i <= 37;i++)
+            for(int i = 0;i <= 38;i++)
             {
                 switch(i)
                 {
                 case 0:
                 case 1:
-                case 24:
+                case 2:
                 case 25:
-                case 35:
+                case 26:
+                case 36:
                     DataGrid[i] = new DataViewer(GridType.Item);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Item);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
 
-                case 2:
                 case 3:
                 case 4:
                 case 5:
@@ -2512,73 +2545,74 @@ namespace WinFormsApp1
                 case 13:
                 case 14:
                 case 15:
-                case 26:
+                case 16:
                 case 27:
                 case 28:
                 case 29:
                 case 30:
                 case 31:
+                case 32:
                     DataGrid[i] = new DataViewer(GridType.Normal);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Normal);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
 
-                case 16:
                 case 17:
                 case 18:
+                case 19:
                     DataGrid[i] = new DataViewer(GridType.Map);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Map);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 19:
                 case 20:
                 case 21:
+                case 22:
                     DataGrid[i] = new DataViewer(GridType.Mob);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Mob);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 22:
-               
+                case 23:
+
                     DataGrid[i] = new DataViewer(GridType.Skill);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Skill);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 23:
+                case 24:
                     DataGrid[i] = new DataViewer(GridType.Npc);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Npc);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 32:
+                case 33:
                     DataGrid[i] = new DataViewer(GridType.Morph);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Morph);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 33:
+                case 34:
                     DataGrid[i] = new DataViewer(GridType.Familiar);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Familiar);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 34:
+                case 35:
                     DataGrid[i] = new DataViewer(GridType.DamageSkin);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.DamageSkin);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
-                case 36:
+                case 37:
                     DataGrid[i] = new DataViewer(GridType.Reactor);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Reactor);
                     TempGrid[i].Parent = tabControl1.TabPages[i];
                     break;
 
-                case 37:
+                case 38:
                     DataGrid[i] = new DataViewer(GridType.Music);
                     DataGrid[i].Parent = tabControl1.TabPages[i];
                     TempGrid[i] = new DataViewer(GridType.Music);

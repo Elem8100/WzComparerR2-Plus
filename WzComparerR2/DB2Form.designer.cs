@@ -47,6 +47,7 @@ namespace WinFormsApp1
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Cash = new System.Windows.Forms.TabPage();
             this.Consume = new System.Windows.Forms.TabPage();
+            this.Special = new System.Windows.Forms.TabPage();
             this.Weapon = new System.Windows.Forms.TabPage();
             this.Cap = new System.Windows.Forms.TabPage();
             this.Coat = new System.Windows.Forms.TabPage();
@@ -154,6 +155,7 @@ namespace WinFormsApp1
             this.comboBox4.Items.AddRange(new object[] {
             "點商",
             "消耗",
+            "組合包",
             "武器",
             "帽子",
             "上衣",
@@ -322,6 +324,7 @@ namespace WinFormsApp1
             // 
             this.tabControl1.Controls.Add(this.Cash);
             this.tabControl1.Controls.Add(this.Consume);
+            this.tabControl1.Controls.Add(this.Special);
             this.tabControl1.Controls.Add(this.Weapon);
             this.tabControl1.Controls.Add(this.Cap);
             this.tabControl1.Controls.Add(this.Coat);
@@ -390,6 +393,16 @@ namespace WinFormsApp1
             this.Consume.TabIndex = 1;
             this.Consume.Text = "消耗";
             this.Consume.UseVisualStyleBackColor = true;
+            // 
+            // Special
+            // 
+            this.Special.ImageIndex = 34;
+            this.Special.Location = new System.Drawing.Point(4, 35);
+            this.Special.Name = "Special";
+            this.Special.Size = new System.Drawing.Size(629, 467);
+            this.Special.TabIndex = 40;
+            this.Special.Text = "組合包";
+            this.Special.UseVisualStyleBackColor = true;
             // 
             // Weapon
             // 
@@ -824,6 +837,7 @@ namespace WinFormsApp1
             this.imageList1.Images.SetKeyName(31, "31.png");
             this.imageList1.Images.SetKeyName(32, "32.png");
             this.imageList1.Images.SetKeyName(33, "image33.png");
+            this.imageList1.Images.SetKeyName(34, "9101325.icon.png");
             // 
             // DB2Form
             // 
@@ -902,6 +916,7 @@ namespace WinFormsApp1
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage Music;
+        private System.Windows.Forms.TabPage Special;
     }
 }
 
