@@ -65,6 +65,7 @@ namespace WzComparerR2.MapRender
             var form = (Form)sender;
             form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             form.SetDesktopLocation(0, 0);
+          
         }
 
         private void Form_GotFocus(object sender, EventArgs e)
@@ -216,7 +217,7 @@ namespace WzComparerR2.MapRender
             }), KeyCode.Escape, ModifierKeys.None));
 
             //截图
-            this.ui.InputBindings.Add(new KeyBinding(new RelayCommand(_ => { if (CanCapture()) prepareCapture = true; }), KeyCode.Scroll, ModifierKeys.None));
+            this.ui.InputBindings.Add(new KeyBinding(new RelayCommand(_ => { if (CanCapture()) prepareCapture = true; }), KeyCode.S, ModifierKeys.None));
 
             this.ui.InputBindings.Add(new KeyBinding(new RelayCommand(_ => { renderEnv.Camera.AdjustRectEnabled = !renderEnv.Camera.AdjustRectEnabled; }), KeyCode.U, ModifierKeys.Control));
 
@@ -877,6 +878,7 @@ namespace WzComparerR2.MapRender
                     System.Drawing.Imaging.ImageFormat.Png);
 
                 bitmap.Dispose();
+                System.Windows.Forms.MessageBox.Show("儲存地圖完成");
             }
             catch
             {
