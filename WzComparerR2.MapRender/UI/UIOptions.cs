@@ -340,7 +340,7 @@ namespace WzComparerR2.MapRender.UI
                  "Ctrl+U 解除地圖範圍鎖定",
                  "~ 開關控制台",
                  "Alt+Enter 切换解析度",
-                 "ScrollLock 截圖",
+                 "S 截圖",
             };
 
             foreach (var tip in tips)
