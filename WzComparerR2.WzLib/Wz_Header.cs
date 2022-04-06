@@ -28,6 +28,7 @@ namespace WzComparerR2.WzLib
         public long DataStartPosition { get; private set; }
 
         public bool VersionChecked { get; set; }
+        public Wz_Capabilities Capabilities { get; internal set; }
 
         public int WzVersion => this.versionDetector?.WzVersion ?? 0;
         public uint HashVersion => this.versionDetector?.HashVersion ?? 0;
@@ -45,6 +46,11 @@ namespace WzComparerR2.WzLib
             this.versionDetector = new OrdinalVersionDetector(encryptedVersion);
         }
 
+        public bool HasCapabilities(Wz_Capabilities cap)
+        {
+            return cap == (this.Capabilities & cap);
+        }
+
         public static int CalcHashVersion(int wzVersion)
         {
             int sum = 0;
@@ -54,7 +60,7 @@ namespace WzComparerR2.WzLib
                 sum <<= 5;
                 sum += (int)versionStr[j] + 1;
             }
-            
+
             return sum;
         }
 

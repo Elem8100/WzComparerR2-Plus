@@ -170,6 +170,7 @@ namespace WzComparerR2.WzLib
                 // not sure if nexon will change this magic version, just hard coded.
                 this.Header.SetWzVersion(777);
                 this.Header.VersionChecked = true;
+                this.Header.Capabilities |= Wz_Capabilities.EncverMissing;
             }
             else
             {
@@ -178,7 +179,7 @@ namespace WzComparerR2.WzLib
 
             return true;
 
-            __failed:
+        __failed:
             this.header = new Wz_Header(null, null, fileName, 0, 0, filesize, 0);
             return false;
         }
@@ -219,7 +220,7 @@ namespace WzComparerR2.WzLib
                     break;
 
                 default:
-                    throw new Exception("문자열을 읽는 중 오류: " + this.FileStream.Name + " " + this.FileStream.Position);
+                    throw new Exception("读取字符串错误 在:" + this.FileStream.Name + " " + this.FileStream.Position);
             }
             return string.Empty;
         }
@@ -362,32 +363,11 @@ namespace WzComparerR2.WzLib
                 switch ((int)this.BReader.ReadByte())
                 {
                     case 0x02:
-                        foreach (Wz_Crypto.Wz_CryptoKeyType encType in new[] { Wz_Crypto.Wz_CryptoKeyType.BMS, Wz_Crypto.Wz_CryptoKeyType.KMS, Wz_Crypto.Wz_CryptoKeyType.GMS, this.WzStructure.encryption.EncType })
-                        {
-                            long oldoffset = this.FileStream.Position;
-                            int stroffset = this.Header.HeaderSize + 1 + this.BReader.ReadInt32();
-                            name = this.ReadStringAt(stroffset);
-                            if (this.WzStructure.encryption.IsLegalNodeName(name))
-                            {
-                                break;
-                            }
-                            this.FileStream.Position = oldoffset;
-                            stringTable.Remove(stroffset);
-                            this.WzStructure.encryption.EncType = encType;
-                        }
+                        int stringOffAdd = this.Header.HasCapabilities(Wz_Capabilities.EncverMissing) ? 2 : 1;
+                        name = this.ReadStringAt(this.Header.HeaderSize + stringOffAdd + this.BReader.ReadInt32());
                         goto case 0xffff;
                     case 0x04:
-                        foreach (Wz_Crypto.Wz_CryptoKeyType encType in new[] { Wz_Crypto.Wz_CryptoKeyType.BMS, Wz_Crypto.Wz_CryptoKeyType.KMS, Wz_Crypto.Wz_CryptoKeyType.GMS, this.WzStructure.encryption.EncType })
-                        {
-                            long oldoffset = this.FileStream.Position;
-                            name = this.ReadString();
-                            if (this.WzStructure.encryption.IsLegalNodeName(name))
-                            {
-                                break;
-                            }
-                            this.FileStream.Position = oldoffset;
-                            this.WzStructure.encryption.EncType = encType;
-                        }
+                        name = this.ReadString();
                         goto case 0xffff;
 
                     case 0xffff:
@@ -512,7 +492,7 @@ namespace WzComparerR2.WzLib
                     }
                 }
             }
-        
+
             parent.Nodes.Trim();
         }
 
@@ -597,7 +577,7 @@ namespace WzComparerR2.WzLib
             {
                 this.type = Wz_Type.UI;
             }
-            
+
             if (this.type == Wz_Type.Unknown) //用文件名来判断
             {
                 string wzName = this.node.Text;
