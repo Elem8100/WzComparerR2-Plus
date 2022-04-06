@@ -407,7 +407,7 @@ namespace WzComparerR2.CharaSimControl
                                 sr = new StringResult();
                                 sr.Name = p.SkillID.ToString();
                             }
-                            string summary = $"<{sr.Name.Replace(Environment.NewLine, "")}> 可以使用技能";
+                            string summary = $"可以使用<{sr.Name.Replace(Environment.NewLine, "")}>技能";
                             GearGraphics.DrawPlainText(g, summary, GearGraphics.EquipDetailFont2, color, 10, 244, ref picHeight, 15);
                         }
                     }

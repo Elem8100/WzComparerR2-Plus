@@ -394,7 +394,7 @@ namespace WzComparerR2.CharaSimControl
 
             if(Gear.type == GearType.android && Gear.Props.TryGetValue(GearPropType.android,out value) && value > 0)
             {
-                TextRenderer.DrawText(g,"외형 :",GearGraphics.EquipDetailFont,new Point(13,picH),Color.White,TextFormatFlags.NoPadding);
+                TextRenderer.DrawText(g,"外型 :",GearGraphics.EquipDetailFont,new Point(13,picH),Color.White,TextFormatFlags.NoPadding);
                 picH += 15;
 
                 Wz_Node android = PluginBase.PluginManager.FindWz(string.Format("Etc/Android/{0:D4}.img",value));
@@ -887,7 +887,7 @@ namespace WzComparerR2.CharaSimControl
 
                 if(!string.IsNullOrEmpty(incline))
                 {
-                    desc.Add("\n #c裝備時可獲得僅限1次" + incline.Substring(2) + "的經驗值。（每日限制，超過最大值除外)#");
+                    desc.Add("\n #c裝備時可獲得僅限1次" + incline.Substring(2) + "的經驗值。每日限制 ，超過最大值除外)#");
 
                 }
 
@@ -899,7 +899,7 @@ namespace WzComparerR2.CharaSimControl
 
             if(Gear.type != GearType.pickaxe && Gear.type != GearType.shovel && PluginBase.PluginManager.FindWz(string.Format("Effect/ItemEff.img/{0}/effect",Gear.ItemID)) != null)
             {
-                //  desc.Add(" #c角色資訊視窗等某些情况下看不到的物品.#");
+                  desc.Add(" #c這是角色資料窗等部份狀况不會顯示的道具。#");
             }
 
             if(Gear.Props.TryGetValue(GearPropType.noPetEquipStatMoveItem,out value) && value != 0)

@@ -469,7 +469,7 @@ namespace WzComparerR2.CharaSimControl
             {
                 picH -= 3;
                 DateTime time = DateTime.Now.AddDays(value);
-                expireTime = time.ToString("魔法時間：yyyy年M月d日HH點為止");
+                expireTime = time.ToString("魔法時間：到yyyy年M月d日HH點為止");
             }
             if(!string.IsNullOrEmpty(expireTime))
             {
@@ -602,10 +602,10 @@ namespace WzComparerR2.CharaSimControl
                         }
                     }
                 }
-                desc += "\n#c技能：挑選金幣";
+                desc += "\n#c技能：撿拾楓幣";
                 if(item.Props.TryGetValue(ItemPropType.pickupItem,out value) && value > 0)
                 {
-                    desc += ", 拾取物品";
+                    desc += ",撿取道具";
                 }
                 if(item.Props.TryGetValue(ItemPropType.longRange,out value) && value > 0)
                 {
@@ -613,7 +613,7 @@ namespace WzComparerR2.CharaSimControl
                 }
                 if(item.Props.TryGetValue(ItemPropType.sweepForDrop,out value) && value > 0)
                 {
-                    desc += ", 自動拾取";
+                    desc += ",自動拾取";
                 }
                 if(item.Props.TryGetValue(ItemPropType.pickupAll,out value) && value > 0)
                 {
@@ -629,7 +629,7 @@ namespace WzComparerR2.CharaSimControl
                 }
                 if(item.Props.TryGetValue(ItemPropType.autoBuff,out value) && value > 0)
                 {
-                    desc += ", 自動使用buff技能";
+                    desc += ",自動使用加持技能";
                 }
                 if(item.Props.TryGetValue(ItemPropType.giantPet,out value) && value > 0)
                 {
@@ -680,7 +680,7 @@ namespace WzComparerR2.CharaSimControl
                 }
                 else if((!item.Props.TryGetValue(ItemPropType.tradeBlock,out value) || value == 0) && item.ItemID / 10000 != 501 && item.ItemID / 10000 != 502 && item.ItemID / 10000 != 516)
                 {
-                    GearGraphics.DrawString(g,"\n#c如果您使用 Nexon Cash 購買，您只能在使用前與他人交換一次。#",GearGraphics.ItemDetailFont,100,right,ref picH,16);
+                  //  GearGraphics.DrawString(g,"\n#c如果您使用 Nexon Cash 購買，您只能在使用前與他人交換一次。#",GearGraphics.ItemDetailFont,100,right,ref picH,16);
                 }
             }
             if(item.Props.TryGetValue(ItemPropType.flatRate,out value) && value > 0)
@@ -716,13 +716,13 @@ namespace WzComparerR2.CharaSimControl
                     }
                 }
 
-                GearGraphics.DrawString(g,"[可用指令]",GearGraphics.ItemDetailFont,100,right,ref picH,16);
+                GearGraphics.DrawString(g,"[可使用的指令]",GearGraphics.ItemDetailFont,100,right,ref picH,16);
                 foreach(int l0 in commandLev.Values.OrderBy(i => i).Distinct())
                 {
-                    GearGraphics.DrawString(g,"Lv. " + l0 + " 多於 : " + string.Join(", ",commandLev.Where(i => i.Value == l0).Select(i => i.Key).OrderBy(s => s)),GearGraphics.ItemDetailFont,100,right,ref picH,16);
+                    GearGraphics.DrawString(g,"Lv." + l0 + "以上 :" + string.Join(",",commandLev.Where(i => i.Value == l0).Select(i => i.Key).OrderBy(s => s)),GearGraphics.ItemDetailFont,100,right,ref picH,16);
                 }
-                GearGraphics.DrawString(g,"Tip. 寵物等級達到15的話可以讓它說特定的話",GearGraphics.ItemDetailFont,100,right,ref picH,16);
-                GearGraphics.DrawString(g,"#c예) /펫 [할 말]#",GearGraphics.ItemDetailFont,100,right,ref picH,16,((SolidBrush)GearGraphics.OrangeBrush4).Color);
+                GearGraphics.DrawString(g, "Tip. 當寵物等級達15級 ，可讓牠說出說特定的內容。", GearGraphics.ItemDetailFont,100,right,ref picH,16);
+                GearGraphics.DrawString(g,"#c例)/寵物 [內容]#",GearGraphics.ItemDetailFont,100,right,ref picH,16,((SolidBrush)GearGraphics.OrangeBrush4).Color);
             }
 
             string incline = null;
