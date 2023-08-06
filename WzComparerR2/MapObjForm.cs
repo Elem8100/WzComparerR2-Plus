@@ -61,6 +61,8 @@ namespace WzComparerR2
                         continue;
                     foreach(var img in Dir.Nodes)
                     {
+                        if (!Char.IsNumber(img.Text[0]))
+                            continue;
                         var ID = img.ImgID();
                         if(MapNames.ContainsKey(ID))
                             listBox1.Items.Add(ID + "   " + MapNames[ID]);

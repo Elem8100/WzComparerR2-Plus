@@ -70,7 +70,7 @@ namespace WinFormsApp1
         }
         void DumpData2(Wz_Node Entry)
         {
-
+            
             Dump2(Entry);
             string FinalStr = "";
             var S = Entry.GetPathD() + ".";
@@ -137,6 +137,8 @@ namespace WinFormsApp1
 
             foreach (var img in GetNode("Item/" + ItemDir).Nodes)
             {
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
                 if (ItemDir == "Pet")
                 {
                     ID = img.ImgID();
@@ -898,6 +900,8 @@ namespace WinFormsApp1
 
                 foreach (var img in Dir.Nodes)
                 {
+                    if (!Char.IsNumber(img.Text[0]))
+                        continue;
                     Row += 1;
                     DumpData2(img.GetNode("info"));
 
@@ -1362,6 +1366,8 @@ namespace WinFormsApp1
             Bitmap Icon = null;
             foreach (var Img in GetNode("Npc").Nodes)
             {
+                if (!Char.IsNumber(Img.Text[0]))
+                    continue;
                 Row += 1;
                 var ID = Img.ImgID();
                 var Entry = GetNode("Npc/" + Img.Text);
@@ -1402,7 +1408,6 @@ namespace WinFormsApp1
         }
         void LoadMorph()
         {
-
             var Dict = new Dictionary<string, (string, string)>();
             var imgs = new List<string>();
             string Desc = "", Name = "";
@@ -1414,6 +1419,8 @@ namespace WinFormsApp1
             }
             foreach (var img in GetNode("Morph").Nodes)
             {
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
                 imgs.Add(img.ImgID());
             }
             Bitmap Icon = null;
@@ -1574,6 +1581,8 @@ namespace WinFormsApp1
 
             foreach (var img in GetNode("Reactor").Nodes)
             {
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
                 Row += 1;
                 DumpData2(GetNode("Reactor/" + img.Text + "/info"));
                 var ID = img.ImgID();

@@ -39,7 +39,9 @@ namespace WzComparerR2
         {
             foreach(var img in GetNode("Item/" + ItemDir).Nodes)
             {
-                if(ItemDir == "Pet")
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
+                if (ItemDir == "Pet")
                 {
                     var ID = img.ImgID();
                     if(GetNode("Item/Pet/" + img.Text + "/info/iconD") != null)
@@ -95,6 +97,8 @@ namespace WzComparerR2
                     continue;
                 foreach(var img in Dir.Nodes)
                 {
+                    if (!Char.IsNumber(img.Text[0]))
+                        continue;
                     var ID = img.ImgID();
                     if(img.GetNode("miniMap/canvas") != null)
                         ImageList.Add((img.GetNode("miniMap/canvas").ExtractPng(), ID));
@@ -219,6 +223,8 @@ namespace WzComparerR2
             Bitmap Icon = null;
             foreach(var Img in GetNode("Npc").Nodes)
             {
+                if (!Char.IsNumber(Img.Text[0]))
+                    continue;
                 var ID = Img.ImgID();
                 var Link = GetNode("Npc/" + Img.Text + "/info/link");
                 if(Link != null)
@@ -250,6 +256,8 @@ namespace WzComparerR2
         {
             foreach(var Img in GetNode("Morph").Nodes)
             {
+                if (!Char.IsNumber(Img.Text[0]))
+                    continue;
                 var ID = Img.ImgID();
                 Bitmap MorphPic = null;
                 if(GetNode("Morph/" + ID + ".img/walk/0") != null)
@@ -272,6 +280,8 @@ namespace WzComparerR2
             string CardID = "";
             foreach(var img in GetNode("Character/Familiar").Nodes)
             {
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
                 var ID = img.ImgID();
                 var Entry = GetNode("Character/Familiar/" + img.Text);
 
@@ -337,6 +347,8 @@ namespace WzComparerR2
             Bitmap Icon = null;
             foreach(var img in GetNode("Reactor").Nodes)
             {
+                if (!Char.IsNumber(img.Text[0]))
+                    continue;
                 var ID = img.ImgID();
                 var Link = GetNode("Reactor/" + ID + "/info/link");
                 if(Link != null)
