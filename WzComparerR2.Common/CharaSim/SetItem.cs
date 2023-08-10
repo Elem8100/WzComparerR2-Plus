@@ -80,7 +80,7 @@ namespace WzComparerR2.CharaSim
                                             part.ByGender = Convert.ToInt32(itemNode2.Value) != 0;
                                             break;
                                         default:
-                                            if (Int32.TryParse(itemNode2.Text, out num) && num > 0)
+                                            if (Int32.TryParse(itemNode2.Text, out int index) && index >= 0)
                                             {
                                                 part.ItemIDs[Convert.ToInt32(itemNode2.Value)] = false;
                                             }

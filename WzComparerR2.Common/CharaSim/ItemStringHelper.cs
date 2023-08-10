@@ -145,6 +145,7 @@ namespace WzComparerR2.CharaSim
 
                 case GearPropType.incARC: return "ARC : " + sign + value;
                 case GearPropType.incAUT: return "AUT : " + sign + value;
+                case GearPropType.Etuc: return "可进行卓越强化。（最多：" + value + "次）";
                 default: return null;
             }
         }
@@ -361,6 +362,9 @@ namespace WzComparerR2.CharaSim
                 case GearType.boxingCannon: return "武拳";
                 case GearType.boxingSky: return "拳環";
                 case GearType.ornament: return "飾品";
+                case GearType.chakram: return "环刃";
+                case GearType.hexSeeker: return "索魂器";
+
                 default: return null;
 
 
@@ -497,6 +501,9 @@ namespace WzComparerR2.CharaSim
                 case GearType.boxingCannon:
                 case GearType.boxingSky: return GetExtraJobReqString(175);
                 case GearType.ornament: return GetExtraJobReqString(162);
+                case GearType.chakram:
+                case GearType.hexSeeker: return GetExtraJobReqString(154);
+
                 default: return null;
             }
         }
@@ -535,6 +542,7 @@ namespace WzComparerR2.CharaSim
                 case 162: return "可裝備元素師";
                 case 164: return "可裝備虎影職業群";
                 case 175: return "可裝備墨玄";
+                case 154: return "卡里可穿戴装备";
                 default: return null;
             }
         }

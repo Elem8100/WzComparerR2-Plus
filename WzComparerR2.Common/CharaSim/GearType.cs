@@ -379,7 +379,7 @@ namespace WzComparerR2.CharaSim
         /// 饰品 135402x
         /// </summary>
         ornament = 135402,
-
+        hexSeeker = 135403,
         bracelet = 135400,
         /// <summary>
         /// 手杖
@@ -405,6 +405,8 @@ namespace WzComparerR2.CharaSim
         /// 武拳 140_3xxx
         /// </summary>
         boxingCannon = 1403,
+
+        chakram = 1404,
         /// <summary>
         /// 雙手斧 141
         /// </summary>
