@@ -123,9 +123,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WzComparerR2.MapRender, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="WzComparerR2.MapRender">
       <HintPath>bin\Release\Plugin\WzComparerR2.MapRender\WzComparerR2.MapRender.dll</HintPath>
+    </Reference>
+    <Reference Include="WzComparerR2.WzLib">
+      <HintPath>bin\Release\Lib\WzComparerR2.WzLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="Exists('..\Build\CommonAssemblyInfo.cs')">
@@ -419,11 +421,6 @@
     <ProjectReference Include="..\WzComparerR2.PluginBase\WzComparerR2.PluginBase.csproj">
       <Project>{FA74A2FD-0250-4182-845D-DD98D829B525}</Project>
       <Name>WzComparerR2.PluginBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WzComparerR2.WzLib\WzComparerR2.WzLib.csproj">
-      <Project>{0e9801fd-44a2-4af8-ae91-d6e74bad56b2}</Project>
-      <Name>WzComparerR2.WzLib</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
