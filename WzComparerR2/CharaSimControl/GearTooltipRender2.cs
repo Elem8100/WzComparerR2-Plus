@@ -788,6 +788,17 @@ namespace WzComparerR2.CharaSimControl
                     }
                 }
             }
+            if (Gear.Props.TryGetValue(GearPropType.Etuc, out value) && value > 0)
+            {
+                //分割线5号
+                if (hasPart2)
+                {
+                    g.DrawImage(res["dotline"].Image, 0, picH);
+                    picH += 8;
+                }
+                g.DrawString(ItemStringHelper.GetGearPropString(GearPropType.Etuc, value), GearGraphics.ItemDetailFont, Brushes.White, 11, picH);
+                picH += 23;
+            }
 
             //绘制desc
             List<string> desc = new List<string>();
@@ -887,7 +898,7 @@ namespace WzComparerR2.CharaSimControl
 
                 if(!string.IsNullOrEmpty(incline))
                 {
-                    desc.Add("\n #c裝備時可獲得僅限1次" + incline.Substring(2) + "的經驗值。每日限制 ，超過最大值除外)#");
+                    desc.Add("\n #c裝備時可獲得僅限1次" + incline.Substring(2) + "的經驗值。(每日限制 ，超過最大值除外)#");
 
                 }
 

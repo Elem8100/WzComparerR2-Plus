@@ -320,12 +320,11 @@ namespace WzComparerR2.CharaSimControl
 
         private Bitmap RenderItem(out int picH)
         {
-            Bitmap tooltip = new Bitmap(290,DefaultPicHeight);
-            Graphics g = Graphics.FromImage(tooltip);
+          
             StringFormat format = (StringFormat)StringFormat.GenericDefault.Clone();
             int value;
 
-            picH = 10;
+          
             //物品标题
             StringResult sr;
             if(StringLinker == null || !StringLinker.StringItem.TryGetValue(item.ItemID,out sr))
@@ -333,35 +332,39 @@ namespace WzComparerR2.CharaSimControl
                 sr = new StringResult();
                 sr.Name = "(null)";
             }
+
+            // calculate image width
+            const int DefualtWidth = 290;
+            int tooltipWidth = DefualtWidth;
+
+            if (int.TryParse(sr["fixWidth"], out int fixWidth) && fixWidth > 0)
+            {
+                tooltipWidth = fixWidth;
+            }
+            else
+            {
+                using (Bitmap dummyImg = new Bitmap(1, 1))
+                using (Graphics tempG = Graphics.FromImage(dummyImg))
+                {
+                    SizeF titleSize = tempG.MeasureString(sr.Name, GearGraphics.ItemNameFont2, short.MaxValue, format);
+                    titleSize.Width += 12 * 2;
+                    if (titleSize.Width > DefualtWidth)
+                    {
+                        tooltipWidth = (int)Math.Ceiling(titleSize.Width);
+                    }
+                }
+            }
             string itemName = sr.Name.Replace(Environment.NewLine,"");
             string nameAdd = item.ItemID / 10000 == 313 || item.ItemID / 10000 == 501 ? "OFF" : null;
             if(!string.IsNullOrEmpty(nameAdd))
             {
                 itemName += " (" + nameAdd + ")";
             }
+            Bitmap tooltip = new Bitmap(tooltipWidth, DefaultPicHeight);
+            Graphics g = Graphics.FromImage(tooltip);
+            picH = 10;
 
-            SizeF titleSize = TextRenderer.MeasureText(g,itemName,GearGraphics.ItemNameFont2,new Size(int.MaxValue,int.MaxValue),TextFormatFlags.NoPrefix);
-            titleSize.Width += 9 * 2;
-            if(titleSize.Width > 290)
-            {
-                //重构大小
-                g.Dispose();
-                tooltip.Dispose();
 
-                tooltip = new Bitmap((int)Math.Ceiling(titleSize.Width),DefaultPicHeight);
-                g = Graphics.FromImage(tooltip);
-                picH = 10;
-            }
-            if (sr["fixWidth"] != null)
-            {
-                //重构大小
-                g.Dispose();
-                tooltip.Dispose();
-
-                tooltip = new Bitmap(Int32.Parse(sr["fixWidth"]), DefaultPicHeight);
-                g = Graphics.FromImage(tooltip);
-                picH = 10;
-            }
             //绘制标题
             bool hasPart2 = false;
             format.Alignment = StringAlignment.Center;
