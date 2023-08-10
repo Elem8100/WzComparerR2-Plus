@@ -40,7 +40,7 @@ namespace WzComparerR2.MapRender
             else
             {
                 //添加提示语
-                this.ui.ChatBox.AppendTextSystem("MapRender加載失敗，沒有地圖數據。");
+                this.ui.ChatBox.AppendTextSystem("MapRender가 맵을 로드하지 못했습니다. 올바른 맵이 아닙니다.");
                 this.opacity = 1;
                 yield return cm.Yield(OnSceneRunning());
             }
@@ -136,6 +136,7 @@ namespace WzComparerR2.MapRender
                             return null;
                         }
                     }
+
                     while (bgmNode.Value is Wz_Uol uol)
                     {
                         bgmNode = uol.HandleUol(bgmNode);
@@ -325,7 +326,7 @@ namespace WzComparerR2.MapRender
                     });
                 }
             }
-            if (mapData.MapMark == "MonsterPark")
+            if (mapData.MapMark == "MonsterPark" || string.Compare(mapData.FieldScript, "morassDQ", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 foreach (var mob in mapData.Scene.Mobs)
                 {
@@ -516,7 +517,7 @@ namespace WzComparerR2.MapRender
                 }
                 else
                 {
-                    this.ui.ChatBox.AppendTextSystem($"{toMap.Value} 没有找到");
+                    this.ui.ChatBox.AppendTextSystem($"{toMap.Value} 맵으로 이동할 수 없습니다.");
                 }
             }
             else //当前地图
