@@ -22,6 +22,7 @@ namespace WzComparerR2.MapRender
             this.MiniMap = new MiniMap();
             this.Tooltips = new List<TooltipItem>();
             this.Date = DateTime.Now;
+
             this.random = random;
         }
 
@@ -39,6 +40,7 @@ namespace WzComparerR2.MapRender
         public int? ReturnMap { get; set; }
         public bool HideMinimap { get; set; }
         public int FieldLimit { get; set; }
+        public string FieldScript { get; set; }
 
         public MiniMap MiniMap { get; private set; }
         #endregion
@@ -71,7 +73,7 @@ namespace WzComparerR2.MapRender
             Wz_Node node;
             if (!string.IsNullOrEmpty(this.MapMark))
             {
-                node = PluginManager.FindWz("Map\\MapHelper.img\\mark\\" + this.MapMark);
+                node = PluginManager.FindWz("Map\\MapHelper.img\\mark\\" + this.MapMark)?.GetLinkedSourceNode(PluginManager.FindWz);
                 if (node != null)
                 {
                     node = node.GetLinkedSourceNode(PluginManager.FindWz);
@@ -126,6 +128,10 @@ namespace WzComparerR2.MapRender
             {
                 LoadSkyWhale(node);
             }
+            if ((node = mapImgNode.Nodes["illuminantCluster"]) != null)
+            {
+                LoadIlluminantCluster(node);
+            }
             if ((node = mapImgNode.Nodes["ToolTip"]) != null)
             {
                 LoadTooltip(node);
@@ -169,6 +175,7 @@ namespace WzComparerR2.MapRender
             this.ReturnMap = infoNode.Nodes["returnMap"].GetValueEx<int>();
             this.HideMinimap = infoNode.Nodes["hideMinimap"].GetValueEx(false);
             this.FieldLimit = infoNode.Nodes["fieldLimit"].GetValueEx(0);
+            this.FieldScript = infoNode.Nodes["fieldScript"].GetValueEx<string>(null);
         }
 
         private void LoadMinimap(Wz_Node miniMapNode, ResourceLoader resLoader)
@@ -297,6 +304,15 @@ namespace WzComparerR2.MapRender
                     item.Index = int.Parse(node.Text);
                 }
 
+                if (item.Type == LifeItem.LifeType.Npc)
+                {
+                    var npcNode = PluginManager.FindWz(string.Format("Npc/{0:D7}.img/info", item.ID));
+                    if ((npcNode?.Nodes["hide"].GetValueEx(0) ?? 0) != 0)
+                    {
+                        continue;
+                    }
+                }
+
                 //直接绑定foothold
                 ContainerNode<FootholdItem> fhNode;
                 if (item.Fh != 0 && (fhNode = FindFootholdByID(item.Fh)) != null)
@@ -312,7 +328,19 @@ namespace WzComparerR2.MapRender
 
         private void LoadPortal(Wz_Node portalNode)
         {
+            string mapID = this.ID.ToString().PadLeft(9, '0');
             var portalTooltipNode = PluginManager.FindWz("String/ToolTipHelp.img/PortalTooltip/" + this.ID);
+            var graphMapNode = PluginManager.FindWz(string.Format("Map/Map/Graph.img/{0:D2}/{1}/portal", this.ID / 10000000, mapID));
+            if (graphMapNode == null)
+            {
+                foreach (var graphImgSubNode in PluginManager.FindWz("Map/Map/Graph.img")?.Nodes ?? new Wz_Node.WzNodeCollection(null))
+                {
+                    if (graphImgSubNode.Nodes[mapID] != null)
+                    {
+                        graphMapNode = graphImgSubNode.Nodes[mapID].Nodes["portal"];
+                    }
+                }
+            }
 
             foreach (var node in portalNode.Nodes)
             {
@@ -340,7 +368,22 @@ namespace WzComparerR2.MapRender
                         item.Tooltip = tooltip;
                     }
                 }
-
+                //Graph.img에 따른 이동경로 출력
+                item.GraphTargetMap = new List<int>();
+                if (graphMapNode != null)
+                {
+                    foreach (var graphPortalNode in graphMapNode.Nodes)
+                    {
+                        if (item.Index == graphPortalNode.Nodes["portalNum"].GetValueEx<int>())
+                        {
+                            var targetMapID = graphPortalNode.Nodes["targetMap"].GetValueEx<int>();
+                            if (targetMapID != null)
+                            {
+                                item.GraphTargetMap.Add(targetMapID.Value);
+                            }
+                        }
+                    }
+                }
                 Scene.Fly.Portal.Slots.Add(item);
             }
         }
@@ -381,6 +424,19 @@ namespace WzComparerR2.MapRender
                 var item = SkyWhaleItem.LoadFromNode(node);
                 item.Name = node.Text;
                 Scene.Fly.SkyWhale.Slots.Add(item);
+            }
+        }
+
+        private void LoadIlluminantCluster(Wz_Node illuminantClusterNode)
+        {
+            foreach (var node in illuminantClusterNode.Nodes)
+            {
+                if (node.Nodes.Count > 0)
+                {
+                    var item = IlluminantClusterItem.LoadFromNode(node);
+                    item.Name = node.Text;
+                    Scene.Fly.IlluminantCluster.Slots.Add(item);
+                }
             }
         }
 
@@ -536,6 +592,10 @@ namespace WzComparerR2.MapRender
                         {
                             PreloadResource(resLoader, (PortalItem)item);
                         }
+                        else if (item is IlluminantClusterItem)
+                        {
+                            PreloadResource(resLoader, (IlluminantClusterItem)item);
+                        }
                         else if (item is ReactorItem)
                         {
                             PreloadResource(resLoader, (ReactorItem)item);
@@ -598,6 +658,11 @@ namespace WzComparerR2.MapRender
         private void PreloadResource(ResourceLoader resLoader, LifeItem life)
         {
             string path;
+            if (life.Hide)
+            {
+                life.View = new LifeItem.ItemView();
+                return;
+            }
             switch (life.Type)
             {
                 case LifeItem.LifeType.Mob:
@@ -729,6 +794,41 @@ namespace WzComparerR2.MapRender
             portal.View = view;
         }
 
+        private void PreloadResource(ResourceLoader resLoader, IlluminantClusterItem illuminantCluster)
+        {
+            string path;
+
+            var view = new IlluminantClusterItem.ItemView();
+            path = $@"Map\Obj\sellas.img\fieldGimmick\cluster\{illuminantCluster.StartPoint * 2}";
+
+            var aniNode = PluginManager.FindWz(path);
+            if (aniNode != null)
+            {
+                var aniData = resLoader.LoadAnimationData(aniNode);
+                if (aniData != null)
+                {
+                    view.Animator = CreateAnimator(aniData);
+                }
+            }
+
+            illuminantCluster.StartView = view;
+
+            view = new IlluminantClusterItem.ItemView();
+            path = $@"Map\Obj\sellas.img\fieldGimmick\cluster\{illuminantCluster.EndPoint * 2 + 1}";
+
+            aniNode = PluginManager.FindWz(path);
+            if (aniNode != null)
+            {
+                var aniData = resLoader.LoadAnimationData(aniNode);
+                if (aniData != null)
+                {
+                    view.Animator = CreateAnimator(aniData);
+                }
+            }
+
+            illuminantCluster.EndView = view;
+        }
+
         private void PreloadResource(ResourceLoader resLoader, ReactorItem reactor)
         {
             string path = $@"Reactor\{reactor.ID:D7}.img";
@@ -798,6 +898,10 @@ namespace WzComparerR2.MapRender
                         for (int i = 0; i < particle.SubItems.Length; i++)
                         {
                             var subItem = particle.SubItems[i];
+                            if (subItem.Quest.Exists(quest => !resLoader.PatchVisibility.IsVisible(quest.Item1, quest.Item2)))
+                            {
+                                continue;
+                            }
                             var pGroup = pSystem.CreateGroup(i.ToString());
                             pGroup.Position = new Vector2(subItem.X, subItem.Y);
                             pGroup.Active();
@@ -826,6 +930,27 @@ namespace WzComparerR2.MapRender
                     {
                         aniData.Add(actName, ani);
                     }
+                }
+            }
+            long date = Int64.Parse(Date.ToString("yyyyMMddHHmm"));
+            foreach (var conditionNode in node.Nodes.Where(n => n.Text.StartsWith("condition")))
+            {
+                if ((conditionNode.Nodes.Any(n => n.Text.All(char.IsDigit)) && conditionNode.Nodes.Where(n => n.Text.All(char.IsDigit)).All(n => resLoader.PatchVisibility.IsVisibleExact(int.Parse(n.Text), Convert.ToInt32(n.Value)))) || (conditionNode.Nodes["dateStart"].GetValueEx<long>(0) <= date && date <= conditionNode.Nodes["dateEnd"].GetValueEx<long>(0)))
+                {
+                    aniData.Clear();
+                    foreach (var conditionedActionNode in conditionNode.Nodes)
+                    {
+                        var conditionedActName = conditionedActionNode.Text;
+                        if (conditionedActName != "dateStart" && conditionedActName != "dateEnd")
+                        {
+                            var ani = resLoader.LoadAnimationData(conditionedActionNode) as RepeatableFrameAnimationData;
+                            if (ani != null)
+                            {
+                                aniData.Add(conditionNode.Text + "/" + conditionedActName, ani);
+                            }
+                        }
+                    }
+                    break;
                 }
             }
             if (aniData.Count > 0)
@@ -867,33 +992,11 @@ namespace WzComparerR2.MapRender
 
         private void AddMobAI(StateMachineAnimator ani)
         {
-            var actions = new[] { "stand", "say", "mouse", "move", "hand", "laugh", "eye" };
             ani.AnimationEnd += (o, e) =>
             {
-                switch(e.CurrentState)
+                if (e.CurrentState == "regen" && ani.Data.States.Contains("stand"))
                 {
-                    case "regen":
-                        if (ani.Data.States.Contains("stand")) e.NextState = "stand";
-                        else if (ani.Data.States.Contains("fly")) e.NextState = "fly";
-                        break;
-
-                    case "stand":
-                        if (ani.Data.States.Contains("jump") && this.random.NextPercent(0.05f))
-                        {
-                            e.NextState = "jump";
-                        }
-                        else if (ani.Data.States.Contains("move") && this.random.NextPercent(0.3f))
-                        {
-                            e.NextState = "move";
-                        }
-                        else
-                        {
-                            e.NextState = e.CurrentState;
-                        }
-                        break;
-
-                    default: 
-                        goto case "regen";
+                    e.NextState = "stand";
                 }
             };
         }
@@ -901,7 +1004,7 @@ namespace WzComparerR2.MapRender
         private void AddNpcAI(StateMachineAnimator ani)
         {
             var actions = new[] { "stand", "say", "mouse", "move", "hand", "laugh", "eye" };
-            var availActions = ani.Data.States.Where(act => actions.Contains(act)).ToArray();
+            var availActions = ani.Data.States.Where(act => !act.EndsWith("_old") && Array.Exists(actions, acts => act.Contains(acts))).ToArray();
             if (availActions.Length > 0)
             {
                 ani.AnimationEnd += (o, e) =>
