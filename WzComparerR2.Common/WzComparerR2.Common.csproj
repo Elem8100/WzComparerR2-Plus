@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WzComparerR2</RootNamespace>
     <AssemblyName>WzComparerR2.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -54,7 +54,10 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WzComparerR2.PluginBase">
-      <HintPath>..\WzComparerR2.PluginBase\bin\Release\WzComparerR2.PluginBase.dll</HintPath>
+      <HintPath>..\WzComparerR2\bin\Release\Lib\WzComparerR2.PluginBase.dll</HintPath>
+    </Reference>
+    <Reference Include="WzComparerR2.WzLib">
+      <HintPath>..\WzComparerR2\bin\Release\Lib\WzComparerR2.WzLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="Exists('..\Build\CommonAssemblyInfo.cs')">
@@ -181,13 +184,6 @@
     <Compile Include="Text\Parser.cs" />
     <Compile Include="Text\TextRenderer.cs" />
     <Compile Include="Wz_NodeExtension2.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WzComparerR2.WzLib\WzComparerR2.WzLib.csproj">
-      <Project>{0e9801fd-44a2-4af8-ae91-d6e74bad56b2}</Project>
-      <Name>WzComparerR2.WzLib</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Rendering\Effect\PngEffect.fx" />
