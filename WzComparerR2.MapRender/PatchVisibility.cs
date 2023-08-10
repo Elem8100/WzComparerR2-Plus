@@ -11,12 +11,14 @@ namespace WzComparerR2.MapRender
         {
             this.dictVisible = new Dictionary<RenderObjectType, bool>();
             this.questVisible = new Dictionary<int, int>();
+            this.tagsVisible = new SortedDictionary<string, bool>();
             foreach (RenderObjectType type in Enum.GetValues(typeof(RenderObjectType)))
             {
                 this.dictVisible[type] = true;
             }
             this.PortalInEditMode = false;
             this.IlluminantClusterVisible = true;
+            this.DefaultTagVisible = true;
         }
 
         public bool BackVisible
@@ -99,14 +101,19 @@ namespace WzComparerR2.MapRender
             set { this.SetVisible(RenderObjectType.MobName, value); }
         }
 
+        public IReadOnlyDictionary<string, bool> TagsVisible
+        {
+            get { return this.tagsVisible; }
+        }
         public bool EffectVisible
         {
             get { return IsVisible(RenderObjectType.Effect); }
             set { this.SetVisible(RenderObjectType.Effect, value); }
         }
-
+        public bool DefaultTagVisible { get; set; }
         private Dictionary<RenderObjectType, bool> dictVisible;
         private Dictionary<int, int> questVisible;
+        private SortedDictionary<string, bool> tagsVisible;
 
         public bool IsVisible(RenderObjectType type)
         {
@@ -128,6 +135,28 @@ namespace WzComparerR2.MapRender
                 return true;
             }
             return visible == -1 || visible == questState;
+        }
+
+        public bool IsTagVisible(string tag)
+        {
+            return this.tagsVisible.TryGetValue(tag, out var isVisible) ? isVisible : this.DefaultTagVisible;
+        }
+
+        public void SetTagVisible(string tag, bool isVisible)
+        {
+            this.tagsVisible[tag] = isVisible;
+        }
+        public void ResetTagVisible()
+        {
+            this.tagsVisible.Clear();
+        }
+
+        public void ResetTagVisible(string[] tags)
+        {
+            foreach (var tag in tags)
+            {
+                this.tagsVisible.Remove(tag);
+            }
         }
 
         public bool IsVisibleExact(int questID, int questState)
