@@ -47,7 +47,7 @@ namespace WzComparerR2.MapRender
             this.patchVisibility.SkyWhaleVisible = false;
             this.patchVisibility.IlluminantClusterPathVisible = false;
             
-            var form = Form.FromHandle(this.Window.Handle) as Form;
+            form = Form.FromHandle(this.Window.Handle) as Form;
             form.Load += Form_Load;
             form.GotFocus += Form_GotFocus;
             form.LostFocus += Form_LostFocus;
@@ -57,6 +57,7 @@ namespace WzComparerR2.MapRender
             this.imeHelper = new IMEHandler(this, true);
             GameExt.FixKeyboard(this);
         }
+        public Form form;
 
         private void Form_Load(object sender, EventArgs e)
         {
