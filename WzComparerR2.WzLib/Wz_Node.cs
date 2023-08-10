@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Xml;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -452,17 +451,13 @@ namespace WzComparerR2.WzLib
         {
             if (other != null)
             {
-                //return string.Compare(this.Text, other.Text, StringComparison.Ordinal);
-                return StrCmpLogicalW(this.Text, other.Text);
+                return string.Compare(this.Text, other.Text, StringComparison.Ordinal);
             }
             else
             {
                 return 1;
             }
         }
-
-        [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
-        static extern int StrCmpLogicalW(string psz1, string psz2);
     }
 
     public static class Wz_NodeExtension

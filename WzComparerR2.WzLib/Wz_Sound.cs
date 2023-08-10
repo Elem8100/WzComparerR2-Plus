@@ -109,7 +109,7 @@ namespace WzComparerR2.WzLib
 
                         case 0x46:
                             {
-                                if (this.Frequency == this.dataLength)
+                                if (this.Frequency == this.dataLength && this.Ms == 1000)
                                 {
                                     soundType = Wz_SoundType.Binary;
                                 }
@@ -182,8 +182,8 @@ namespace WzComparerR2.WzLib
                 {
                     byte[] tempHeader = new byte[waveFormatLen];
                     Buffer.BlockCopy(this.header, 52, tempHeader, 0, tempHeader.Length);
-                    var enc = this.WzImage.Encryption;
-                    enc.keys.Decrypt(tempHeader, 0, tempHeader.Length); //解密
+                    var encKeys = this.WzImage.EncKeys;
+                    encKeys.Decrypt(tempHeader, 0, tempHeader.Length); //解密
                     cbSize = BitConverter.ToUInt16(tempHeader, 16); //重新验证
                     if (cbSize + 18 == waveFormatLen)
                     {

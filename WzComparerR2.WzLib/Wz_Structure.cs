@@ -17,7 +17,7 @@ namespace WzComparerR2.WzLib
             this.TextEncoding = Wz_Structure.DefaultEncoding;
             this.AutoDetectExtFiles = Wz_Structure.DefaultAutoDetectExtFiles;
             this.ImgCheckDisabled = Wz_Structure.DefaultImgCheckDisabled;
-            // this.WzVersionVerifyMode = Wz_Structure.DefaultWzVersionVerifyMode;
+            //this.WzVersionVerifyMode = Wz_Structure.DefaultWzVersionVerifyMode;
             this.WzVersionVerifyMode = WzVersionVerifyMode.Fast;
         }
 
@@ -31,7 +31,7 @@ namespace WzComparerR2.WzLib
         public Encoding TextEncoding { get; set; }
         public bool AutoDetectExtFiles { get; set; }
         public bool ImgCheckDisabled { get; set; }
-        public WzVersionVerifyMode WzVersionVerifyMode { get; set; }
+        public WzVersionVerifyMode WzVersionVerifyMode {get;set;}
 
         public void Clear()
         {
@@ -134,7 +134,9 @@ namespace WzComparerR2.WzLib
                     IsChecksumChecked = true
                 };
                 imgNode.Value = img;
+
                 node.Nodes.Add(imgNode);
+                node.Value = file;
                 this.wz_files.Add(file);
             }
             catch

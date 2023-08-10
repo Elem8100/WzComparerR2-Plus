@@ -61,7 +61,7 @@ namespace WzComparerR2.WzLib
                 sum <<= 5;
                 sum += (int)versionStr[j] + 1;
             }
-
+            
             return sum;
         }
 
