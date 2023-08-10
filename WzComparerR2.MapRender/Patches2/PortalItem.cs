@@ -15,6 +15,8 @@ namespace WzComparerR2.MapRender.Patches2
         public int Y { get; set; }
         public int? ToMap { get; set; }
         public string ToName { get; set; }
+        //Graph.img에 따른 이동경로 출력
+        public List<int> GraphTargetMap { get; set; }
         public string Script { get; set; }
         public int Image { get; set; }
         public bool EnchantPortal { get; set; }
@@ -41,7 +43,7 @@ namespace WzComparerR2.MapRender.Patches2
             return item;
         }
 
-        public static readonly string[] PortalTypes = new[] { "sp", "pi", "pv", "pc", "pg", "tp", "ps", "pgi", "psi", "pcs", "ph", "psh", "pcj", "pci", "pcig", "pshg", "pcc" };
+        public static readonly IReadOnlyList<string> PortalTypes = new[] { "sp", "pi", "pv", "pc", "pg", "tp", "ps", "pgi", "psi", "pcs", "ph", "psh", "pcj", "pci", "pci2", "pcig", "pshg", "pcc" };
 
         public class ItemView
         {

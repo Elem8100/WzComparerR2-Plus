@@ -16,7 +16,8 @@ namespace WzComparerR2.MapRender.Patches2
         public int Y { get; set; }
         public int Z { get; set; }
         public bool Flip { get; set; }
-        public string Tags { get; set; }
+        public bool Light { get; set; }
+       
         public List<Tuple<int, int>> Quest { get; set; }
 
         public ItemView View { get; set; }
@@ -35,15 +36,24 @@ namespace WzComparerR2.MapRender.Patches2
                 Z = node.Nodes["z"].GetValueEx(0),
 
                 Flip = node.Nodes["f"].GetValueEx(false),
-                Tags = node.Nodes["tags"].GetValueEx<string>(null),
+                Light = node.Nodes["light"].GetValueEx(false),
+               
             };
+           string objTags = node.Nodes["tags"].GetValueEx<string>(null);
+            if (!string.IsNullOrWhiteSpace(objTags))
+            {
+                item.Tags = objTags.Split(',').Select(tag => tag.Trim()).ToArray();
+            }
             item.Quest = new List<Tuple<int, int>>();
             if (item.Tags != null)
             {
                 int questID;
-                if (int.TryParse(item.Tags, out questID) || (item.Tags.StartsWith("q") && int.TryParse(item.Tags.Substring(1), out questID)))
+                foreach (string tag in item.Tags)
                 {
-                    item.Quest.Add(Tuple.Create(questID, 1));
+                    if (int.TryParse(tag, out questID) || (tag.StartsWith("q") && int.TryParse(tag.Substring(1), out questID)))
+                    {
+                        item.Quest.Add(Tuple.Create(questID, 1));
+                    }
                 }
             }
             if (node.Nodes["quest"] != null)

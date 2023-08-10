@@ -50,6 +50,14 @@ namespace WzComparerR2.MapRender.Patches2
                 Flip = node.Nodes["f"].GetValueEx(false),
                 IsFront = node.Nodes["front"].GetValueEx(false),
             };
+           
+
+            string backTags = node.Nodes["backTags"].GetValueEx<string>(null);
+            if (!string.IsNullOrWhiteSpace(backTags))
+            {
+                item.Tags = backTags.Split(',').Select(tag => tag.Trim()).ToArray();
+            }
+
             item.Quest = new List<Tuple<int, int>>();
             if (node.Nodes["backTags"] != null)
             {
