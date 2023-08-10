@@ -23,7 +23,7 @@ namespace WzComparerR2.Comparer
         public bool OutputPng { get; set; }
         public bool OutputAddedImg { get; set; }
         public bool OutputRemovedImg { get; set; }
-        
+
         public string StateInfo
         {
             get { return stateInfo; }
@@ -69,7 +69,7 @@ namespace WzComparerR2.Comparer
         public void EasyCompareWzFiles(Wz_File fileNew, Wz_File fileOld, string outputDir)
         {
             StateInfo = "正在比對Wz概況...";
-           
+
             if (fileNew.Type == Wz_Type.Base || fileOld.Type == Wz_Type.Base) //至少有一个base 拆分对比
             {
                 var virtualNodeNew = RebuildWzFile(fileNew);
@@ -596,7 +596,7 @@ namespace WzComparerR2.Comparer
             Wz_Uol uol;
             Wz_Sound sound;
             Wz_Vector vector;
-            
+
             if ((linkNode = value.GetLinkedSourceNode(path => PluginBase.PluginManager.FindWz(path, value.GetNodeWzFile()))) != value)
             {
                 return "(link) " + OutputNodeValue(fullPath, linkNode, col, outputDir);
